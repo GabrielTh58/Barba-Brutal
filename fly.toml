@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for barba-backend on 2025-09-04T02:29:43-03:00
+# fly.toml app configuration file generated for barba-backend on 2025-09-04T23:55:21-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -8,13 +8,16 @@ primary_region = 'gru'
 
 [build]
 
+[deploy]
+  release_command = "npx prisma db seed --schema=apps/backend/prisma/schema.prisma"
+
 [http_service]
   internal_port = 4000
   force_https = true
   auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
-  processes = ['app'] 
+  processes = ['app']
 
 [[vm]]
   memory = '1gb'
