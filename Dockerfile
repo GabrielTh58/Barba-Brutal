@@ -37,6 +37,7 @@ COPY --from=installer --chown=nodejs:nodejs /usr/src/app/apps/backend/dist ./app
 COPY --from=installer --chown=nodejs:nodejs /usr/src/app/apps/backend/node_modules ./apps/backend/node_modules
 COPY --from=installer --chown=nodejs:nodejs /usr/src/app/apps/backend/prisma ./apps/backend/prisma
 COPY --from=installer --chown=nodejs:nodejs /usr/src/app/packages ./packages
+
  
 USER nodejs
 WORKDIR /usr/src/app/apps/backend
