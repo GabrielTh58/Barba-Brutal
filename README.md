@@ -1,81 +1,104 @@
-# Turborepo starter
+# Barba Brutal
 
-This is an official starter Turborepo.
+<div align="center">
+  <img src="https://github.com/GabrielTh58/Barba-Brutal/raw/main/.gitassets/capa.png" width="350" />
+  
+  
+  <div data-badges>
+      <img src="https://img.shields.io/badge/next.js-%23000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js" />
+      <img src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white" alt="NestJS" />
+      <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+      <img src="https://img.shields.io/badge/prisma-%232D3748.svg?style=for-the-badge&logo=prisma&logoColor=white" alt="Prisma" />
+      <img src="https://img.shields.io/badge/postgresql-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+      <img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS" />
+      <img src="https://img.shields.io/badge/jwt-%23323330.svg?style=for-the-badge&logo=json-web-tokens&logoColor=pink" alt="JWT" />
+     <img src="https://img.shields.io/badge/turborepo-%23000000.svg?style=for-the-badge&logo=turborepo&logoColor=white" alt="Turborepo" />
+     <img src="https://img.shields.io/badge/expo-%23000000.svg?style=for-the-badge&logo=expo&logoColor=white" alt="Expo" />
+     <img src="https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white" alt="Yarn" />
+     <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React" />
+     <img src="https://img.shields.io/badge/postgresql-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+  </div>
+</div>
 
-## Using this example
+<br>
 
-Run the following command:
+A aplicação Barba Brutal é uma plataforma desenvolvida para otimizar o gerenciamento de agendamentos em barbearias. A aplicação permite que os clientes agendem atendimentos de forma prática e rápida, escolhendo os serviços desejados, horários disponíveis e garantindo uma experiência personalizada e eficiente para todos os envolvidos.
 
-```sh
-npx create-turbo@latest
-```
+A aplicação oferece uma interface moderna e intuitiva, possibilitando que os clientes naveguem facilmente pelo sistema de agendamento (tanto na versão mobile quanto na versão web) selecionem os serviços que desejam realizar, como cortes de cabelo, barbas ou pacotes combinados, e escolham o horário que melhor se adequa à sua rotina.
 
-## What's inside?
+Para os barbeiros, a plataforma proporciona um painel exclusivo onde é possível visualizar todos os agendamentos do dia, organizados de forma clara e detalhada. Isso permite que o profissional gerencie seu tempo de maneira eficiente, garantindo um atendimento de qualidade para cada cliente.
 
-This Turborepo includes the following packages/apps:
+---
 
-### Apps and Packages
+## 🌐 Acesse online
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+A aplicação está hospedada em nuvem e pode ser acessada no seguinte 🔗[Link](http://ec2-18-230-217-138.sa-east-1.compute.amazonaws.com:3000)
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+---
+ 
+## 🗒️ Features do projeto 🗒️
 
-### Utilities
+- Agendamento e gerenciamento de horários online
+- Cadastro para clientes
+- Controle de serviços oferecidos e valores
+- Escolha de profissionais e serviços a serem prestados
+- Versões Web e Mobile
+- Painel administrativo para barbeiros
 
-This Turborepo has some additional tools already setup for you:
+![](https://github.com/GabrielTh58/Barba-Brutal/raw/main/.gitassets/2.jpg)
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+---
+## 🖥️ Como rodar este projeto 🖥️
 
-### Build
+### Requisitos:
 
-To build all apps and packages, run the following command:
+- Node.js instalado
+- PostgreSQL configurado
 
-```
-cd my-turborepo
-pnpm build
-```
+### Execução:
 
-### Develop
+1. Clone este repositório:
 
-To develop all apps and packages, run the following command:
+   ```sh
+   git clone https://github.com/GabrielTh58/Barba-Brutal.git
+   ```
 
-```
-cd my-turborepo
-pnpm dev
-```
+2. Acesse o diretório do projeto:
 
-### Remote Caching
+   ```sh
+   cd Barba-Brutal
+   ```
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+3. Instale as dependências com o comando a seguir na pasta raiz do projeto:
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+   ```sh
+   yarn install
+   ```
 
-```
-cd my-turborepo
-npx turbo login
-```
+4. Configure as variáveis de ambiente:
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+   Será necessário criar um arquivo `.env` com as mesmas variáveis de ambiente listadas no arquivo `.env.example` nas pastas `apps/frontend`, `apps/backend` e `apps/mobile`. Cada um desses arquivos deverá ser preenchido com as variáveis de ambiente correspondentes e exemplificadas no arquivo `env.example` de cada pasta.
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+5. Execute as migrações do banco rodando o comando a seguir na pasta prisma que se localiza dentro da pasta `app/backend`:
 
-```
-npx turbo link
-```
+   ```sh
+   npx prisma migrate dev
+   ```
 
-## Useful Links
+6. Inicie a aplicação rodando o comando `yarn dev` na pasta raiz da sua aplicação. Esse comando iniciará todos os projetos da sua aplicação.
 
-Learn more about the power of Turborepo:
+7. Acesse o projeto web em [http://localhost:3000](http://localhost:3000) e o projeto mobile através do emulador que será aberto automáticamente.
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+
+<br>
+
+---
+
+## 💎 Links úteis 💎 
+
+- [Next.js](https://nextjs.org/docs)
+- [NestJS](https://docs.nestjs.com/)
+- [Prisma](https://www.prisma.io/docs)
+- [PostgreSQL](https://www.postgresql.org/docs/)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [Expo](https://expo.dev)
