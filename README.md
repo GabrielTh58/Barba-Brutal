@@ -1,7 +1,7 @@
 # Barba Brutal
 
 <div align="center">
-  <img src="https://github.com/GabrielTh58/Barba-Brutal/raw/main/.gitassets/capa.png" width="350" />
+  <img src="https://github.com/GabrielTh58/PortfolioIA/raw/main/.gitassets/Projetos/barba-brutal/logo.png" width="350" />
   
   
   <div data-badges>
@@ -45,7 +45,7 @@ A aplicação está hospedada em nuvem e pode ser acessada no seguinte 🔗[Link
 - Versões Web e Mobile
 - Painel administrativo para barbeiros
 
-![](https://github.com/GabrielTh58/Barba-Brutal/raw/main/.gitassets/2.jpg)
+![](https://github.com/GabrielTh58/PortfolioIA/raw/main/.gitassets/Projetos/barba-brutal/capa.jpg)
 
 ---
 ## 🖥️ Como rodar este projeto 🖥️
