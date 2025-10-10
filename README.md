@@ -32,7 +32,7 @@ Para os barbeiros, a plataforma proporciona um painel exclusivo onde é possíve
 
 ## 🌐 Acesse online
 
-A aplicação está hospedada em nuvem e pode ser acessada no seguinte 🔗[Link](http://ec2-18-230-217-138.sa-east-1.compute.amazonaws.com:3000)
+A aplicação está hospedada em nuvem e pode ser acessada no seguinte 🔗[Link](https://barba-brutall.vercel.app)
 
 ---
  
