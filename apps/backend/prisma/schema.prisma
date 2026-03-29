@@ -1,13 +1,11 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+  moduleFormat    = "cjs"
 }
 
 datasource db {
   provider = "postgres"
-  url      = env("DATABASE_URL")
 }
 
 model Usuario {
@@ -41,22 +39,19 @@ model Servico {
   preco        Float
   qtdeSlots    Int
   imagemURL    String
-  agendamentos Agendamento[]
+  agendamentos Agendamento[] @relation("AgendamentoToServico")
 
   @@map("servicos")
 }
 
 model Agendamento {
-  id   Int      @id @default(autoincrement())
-  data DateTime
-
-  usuario   Usuario @relation(fields: [usuarioId], references: [id])
-  usuarioId Int
-
-  profissional   Profissional @relation(fields: [profissionalId], references: [id])
+  id             Int          @id @default(autoincrement())
+  data           DateTime
+  usuarioId      Int
   profissionalId Int
-
-  servicos Servico[]
+  profissional   Profissional @relation(fields: [profissionalId], references: [id])
+  usuario        Usuario      @relation(fields: [usuarioId], references: [id])
+  servicos       Servico[]    @relation("AgendamentoToServico")
 
   @@map("agendamentos")
 }

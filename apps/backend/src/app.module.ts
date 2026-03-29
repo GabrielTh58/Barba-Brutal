@@ -5,9 +5,14 @@ import { DbModule } from './db/db.module';
 import { AgendamentoModule } from './agendamento/agendamento.module';
 import { ProfissionalModule } from './profissional/profissional.module';
 import { ServicoModule } from './servico/servico.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [AuthModule, DbModule, AgendamentoModule, ProfissionalModule, ServicoModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true, 
+    }),
+    AuthModule, DbModule, AgendamentoModule, ProfissionalModule, ServicoModule],
   controllers: [AppController],
 })
 export class AppModule {}

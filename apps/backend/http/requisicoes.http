@@ -8,8 +8,8 @@ POST http://localhost:4000/auth/registrar
 content-type: application/json
 
 {
-    "nome": "Rebeca Pereira Silva",
-    "email": "rebecaprrsilva@zmail.com",
+    "nome": "Teste",
+    "email": "teste@zmail.com",
     "senha": "#Senha123",
     "telefone": "(11) 88888-9999",
     "barbeiro": false
@@ -20,7 +20,7 @@ POST http://localhost:4000/auth/login
 content-type: application/json
 
 {
-    "email": "leonardo@formacao.dev",
+    "email": "teste@zmail.com",
     "senha": "#Senha123"
 }
 
@@ -32,7 +32,7 @@ GET http://localhost:4000/servicos
 
 ### 
 POST http://localhost:4000/agendamentos
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibm9tZSI6Ikxlb25hcmRvIExlaXTDo28iLCJlbWFpbCI6Imxlb25hcmRvQGZvcm1hY2FvLmRldiIsInRlbGVmb25lIjoiKDExKSA5OTk5OS05OTk5IiwiYmFyYmVpcm8iOmZhbHNlLCJpYXQiOjE3MjU2NDk4ODIsImV4cCI6MTcyNjk0NTg4Mn0.kqkdJ7uYBr7xO3pDGMgc6Z9Fd4EzY9Yoys65GWGzn1M
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibm9tZSI6IlRlc3RlIiwiZW1haWwiOiJ0ZXN0ZUB6bWFpbC5jb20iLCJ0ZWxlZm9uZSI6IigxMSkgODg4ODgtOTk5OSIsImJhcmJlaXJvIjpmYWxzZSwiaWF0IjoxNzc0NTcxODY2LCJleHAiOjE3NzU4Njc4NjZ9.RzhAL57kgRZFliss0Yn_b1He_swTgGfvCeRJtFnzFrI
 Content-Type: application/json
 
 {
