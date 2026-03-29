@@ -6,7 +6,7 @@ export default function NossosServicos() {
     const { servicos } = useServicos()
 
     return (
-        <div className="flex flex-col gap-y-16">
+        <div className="flex flex-col gap-y-16 py-12">
             <TituloSecao
                 tag="Serviços"
                 principal="Do Classico ao Rock"

@@ -14,7 +14,7 @@ export interface CampoDataHoraProps
 export default function CampoDataHora(props: CampoDataHoraProps) {
     const data = props.value ?? DateUtils.hojeComHoraZerada()
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex w-full flex-col gap-6">
             <CampoDia label="Dias Disponíveis" value={data} onChange={props.onChange} />
             <CampoHorario
                 label="Horários Disponíveis"

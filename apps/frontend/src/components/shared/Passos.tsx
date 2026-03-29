@@ -30,23 +30,27 @@ export default function Passos(props: PassosProps) {
         setPassoAtual(passoAtual + 1)
     }
 
-    function renderizarLabels() {
+   function renderizarLabels() {
         return (
-            <div className="flex gap-4">
+            <div className="flex justify-center lg:justify-start gap-3 md:gap-6 w-full">
                 {props.labels.map((label, i) => {
                     const selecionado = i === passoAtual
                     return (
-                        <div key={i} className="flex items-center gap-2">
+                        <div key={i} className={`flex items-center gap-2 ${selecionado ? '' : 'opacity-60 md:opacity-100'}`}>
                             <span
                                 className={`
-                                    flex items-center justify-center
+                                    flex items-center justify-center shrink-0
                                     w-9 h-9 rounded-full
-                                ${selecionado ? 'bg-white text-black font-bold' : 'bg-zinc-700 text-zinc-400'}
+                                ${selecionado ? 'bg-white text-black font-bold text-sm' : 'bg-zinc-700 text-zinc-400 text-sm'}
                                 `}
                             >
                                 {i + 1}
                             </span>
-                            <span className={selecionado ? 'text-white' : 'text-zinc-600'}>
+                            <span className={`
+                                ${selecionado ? 'block' : 'hidden md:block'} 
+                                text-sm md:text-base 
+                                ${selecionado ? 'text-white font-medium' : 'text-zinc-500'}
+                            `}>
                                 {label}
                             </span>
                         </div>
@@ -59,10 +63,14 @@ export default function Passos(props: PassosProps) {
     const permiteProximoPasso = props.permiteProximoPasso?.[passoAtual] ?? true
 
     return (
-        <div className="flex-1 flex flex-col gap-10">
-            <div>{renderizarLabels()}</div>
-            <div>{props.children[passoAtual] ?? props.children}</div>
-            <div className="flex gap-3">
+        <div className="flex-1 flex flex-col items-center lg:items-start gap-10">
+            <div>
+                {renderizarLabels()}
+            </div>
+            <div className='w-full justify-center lg:justify-start flex gap-4'>
+                {props.children[passoAtual] ?? props.children}
+            </div>
+            <div className="flex gap-3 w-full justify-center lg:justify-start">
                 <button
                     onClick={passoAnterior}
                     disabled={semPassoAnterior()}

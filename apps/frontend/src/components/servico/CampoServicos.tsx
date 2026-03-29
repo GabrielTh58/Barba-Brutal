@@ -55,7 +55,7 @@ export default function CampoServicos(props: CampoServicosProps) {
     return servicos ? (
         <div className="flex flex-col gap-5">
             {props.label && <span className="text-sm uppercase text-zinc-400">{props.label}</span>}
-            <div className="grid grid-cols-3 gap-7 self-start">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-7 self-start">
                 {servicos.map((servico) => {
                     return (
                         <Opcao

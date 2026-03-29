@@ -55,16 +55,16 @@ export default function CampoHorario(props: CampoHorarioProps) {
     }
 
     return (
-        <div className="flex flex-col gap-3 select-none">
+        <div className="flex flex-col gap-3 select-none sm:px-2 lg:px-0">
             {props.label && (
                 <span className="uppercase text-zinc-400 font-light">{props.label}</span>
             )}
             <div className="flex flex-col gap-3">
                 <span className="uppercase text-zinc-400 font-light">Manhã</span>
-                <div className="grid grid-cols-8 gap-1">{manha.map(renderizarHorario)}</div>
+                <div className="grid grid-cols-4 lg:grid-cols-8 gap-1">{manha.map(renderizarHorario)}</div>
 
                 <span className="uppercase text-zinc-400 font-light">Tarde & Noite</span>
-                <div className="grid grid-cols-8 gap-1">{tardeNoite.map(renderizarHorario)}</div>
+                <div className="grid grid-cols-4 lg:grid-cols-8 gap-1">{tardeNoite.map(renderizarHorario)}</div>
             </div>
         </div>
     )

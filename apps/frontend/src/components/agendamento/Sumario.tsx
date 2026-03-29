@@ -7,7 +7,7 @@ export default function Sumario() {
         useAgendamento()
 
     return (
-        <div className="flex flex-col self-start bg-zinc-900 w-96 rounded-lg">
+        <div className="flex flex-col w-full lg:w-96 lg:shrink-0 bg-zinc-900 rounded-lg border border-zinc-800 max-w-[660px]">
             <SumarioTitulo />
             <div className="flex flex-col p-5 gap-6">
                 <SumarioProfissional profissional={profissional} />
@@ -21,8 +21,8 @@ export default function Sumario() {
                     onClick={agendar}
                     disabled={!podeAgendar()}
                     className={`
-                        button w-full bg-yellow-400 text-black
-                        ${!podeAgendar() ? 'cursor-not-allowed opacity-50' : ''}
+                        button w-full bg-yellow-400 text-black font-semibold
+                        ${!podeAgendar() ? 'cursor-not-allowed opacity-50' : 'hover:bg-yellow-500 transition-colors'}
                     `}
                 >
                     Finalizar Agendamento
@@ -34,13 +34,13 @@ export default function Sumario() {
 
 function SumarioTitulo() {
     return (
-        <div className="flex items-center gap-2 p-4 border-b border-zinc-700">
-            <div className="flex justify-center items-center bg-zinc-700 rounded-full h-9 w-9">
-                <IconCalendar size={20} stroke={1} />
+        <div className="flex items-center gap-3 p-5 border-b border-zinc-800">
+            <div className="flex justify-center items-center bg-zinc-800 rounded-full h-10 w-10">
+                <IconCalendar size={20} stroke={1.5} className="text-zinc-300" />
             </div>
             <div className="flex flex-col">
-                <span className="font-bold text-zinc-300">Sumário do Agendamento</span>
-                <span className="text-xs text-zinc-500 leading-3">Será um prazer atendê-lo!</span>
+                <span className="font-bold text-zinc-200">Sumário do Agendamento</span>
+                <span className="text-xs text-zinc-500">Será um prazer atendê-lo!</span>
             </div>
         </div>
     )
@@ -48,8 +48,8 @@ function SumarioTitulo() {
 
 function SumarioProfissional(props: { profissional: Profissional | null }) {
     return (
-        <div className="flex flex-col gap-3">
-            <span className="text-xs uppercase text-zinc-300">Profissional</span>
+        <div className="flex flex-col gap-1.5">
+            <span className="text-xs uppercase text-zinc-500 font-semibold tracking-wider">Profissional</span>
             <span className="text-sm text-white">
                 {props.profissional ? props.profissional.nome : 'Não selecionado'}
             </span>
@@ -60,17 +60,19 @@ function SumarioProfissional(props: { profissional: Profissional | null }) {
 function SumarioServicos(props: { servicos: Servico[] }) {
     function renderizarServico(servico: Servico, i: number) {
         return (
-            <div key={servico.id} className="flex items-center bg-zinc-700 rounded-md ">
-                <span className="px-3 bg-black/25 py-1.5">{i}</span>
-                <span className="font-light px-3">{servico.nome}</span>
+            <div key={servico.id} className="flex items-center bg-zinc-800 rounded-md overflow-hidden">
+                <span className="px-3 bg-black/40 py-1.5 text-xs text-zinc-400">{i}</span>
+                <span className="font-light text-sm px-3">{servico.nome}</span>
             </div>
         )
     }
     return (
-        <div className="flex flex-col gap-3">
-            <span className="text-xs uppercase text-zinc-300">Serviços</span>
-            <div className="flex gap-2 flex-wrap text-sm text-white">
-                {props.servicos.length === 0 ? 'Nenhum selecionado' : ''}
+        <div className="flex flex-col gap-2">
+            <span className="text-xs uppercase text-zinc-500 font-semibold tracking-wider">Serviços</span>
+            <div className="flex gap-2 flex-wrap text-white">
+                {props.servicos.length === 0 ? (
+                    <span className="text-sm text-zinc-400">Nenhum selecionado</span>
+                ) : null}
                 {props.servicos.map((s, i) => renderizarServico(s, i + 1))}
             </div>
         </div>
@@ -79,22 +81,27 @@ function SumarioServicos(props: { servicos: Servico[] }) {
 
 function DuracaoTotal(props: { duracao: string }) {
     return (
-        <div className="flex flex-col gap-3">
-            <span className="text-xs uppercase text-zinc-300">Duração</span>
-            <span className="font-light">{props.duracao}</span>
+        <div className="flex flex-col gap-1.5">
+            <span className="text-xs uppercase text-zinc-500 font-semibold tracking-wider">Duração</span>
+            <span className="font-light text-sm">{props.duracao}</span>
         </div>
     )
 }
 
 function SumarioData(props: { data: Date | null }) {
     return (
-        <div className="flex flex-col gap-3">
-            <span className="text-xs uppercase text-zinc-300">Horário</span>
-            <span className="font-light">
-                {!props.data ? 'Não selecionado' : ''}
-                {props.data?.toLocaleDateString('pt-BR', { dateStyle: 'long' })}
-                {props.data ? ' às ' : ''}
-                {props.data?.toLocaleTimeString('pt-BR').substring(0, 5)}
+        <div className="flex flex-col gap-1.5">
+            <span className="text-xs uppercase text-zinc-500 font-semibold tracking-wider">Horário</span>
+            <span className="font-light text-sm">
+                {!props.data ? (
+                    <span className="text-zinc-400">Não selecionado</span>
+                ) : (
+                    <>
+                        {props.data?.toLocaleDateString('pt-BR', { dateStyle: 'long' })}
+                        <span className="text-zinc-500 mx-1">às</span>
+                        {props.data?.toLocaleTimeString('pt-BR').substring(0, 5)}
+                    </>
+                )}
             </span>
         </div>
     )
@@ -102,9 +109,9 @@ function SumarioData(props: { data: Date | null }) {
 
 function SumarioValorTotal(props: { valor: number }) {
     return (
-        <div className="flex justify-between items-center gap-3 border-y border-zinc-700 p-5">
-            <span className="text-xs uppercase text-zinc-300">Valor Total</span>
-            <span className="font-bold">{MoedaUtils.formatar(props.valor)}</span>
+        <div className="flex justify-between items-center gap-3 border-y border-zinc-800 p-5 bg-zinc-900/50">
+            <span className="text-xs uppercase text-zinc-500 font-semibold tracking-wider">Valor Total</span>
+            <span className="font-bold text-xl text-yellow-400">{MoedaUtils.formatar(props.valor)}</span>
         </div>
     )
 }

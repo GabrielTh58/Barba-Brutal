@@ -18,9 +18,9 @@ export default function CabecalhoComTitulo(props: CabecalhoComTituloProps) {
                 "
             >
                 <Cabecalho />
-                <div className="container flex flex-col justify-center items-center">
-                    <h1 className="text-3xl font-bold text-zinc-200">{props.titulo}</h1>
-                    <p className="text-xs font-light text-zinc-400">{props.descricao}</p>
+                <div className="container flex flex-col justify-center items-center pt-4">
+                    <h1 className="text-2xl md:text-3xl font-bold text-center mb-1 text-zinc-200">{props.titulo}</h1>
+                    <p className="text-xs font-light text-center text-zinc-400">{props.descricao}</p>
                 </div>
             </div>
         </div>

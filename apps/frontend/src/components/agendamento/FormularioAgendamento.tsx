@@ -20,7 +20,7 @@ export default function FormularioAgendamento() {
     } = useAgendamento()
 
     return (
-        <div className="flex gap-10">
+        <div className="flex flex-col items-center  lg:flex-row w-full gap-10">
             <Passos
                 labels={['Selecione o Profissional', 'Selecione os Serviços', 'Escolha o Horário']}
                 permiteProximoPasso={[!!profissional, servicos.length > 0, podeAgendar()]}

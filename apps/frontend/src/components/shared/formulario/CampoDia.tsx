@@ -14,8 +14,8 @@ export default function CampoDia(props: CampoDiaProps) {
             <div
                 key={data.getTime()}
                 className={`
-                    flex-1 flex flex-col items-center gap-2 py-4
-                    ${selecionado ? 'bg-yellow-400 text-black' : 'text-zinc-300'}
+                    flex flex-col items-center gap-2 py-4 rounded-lg cursor-pointer transition-colors 
+                    ${selecionado ? 'bg-yellow-400 text-black' : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'}
                 `}
                 onClick={() => props.onChange(data)}
             >
@@ -42,7 +42,7 @@ export default function CampoDia(props: CampoDiaProps) {
             {props.label && (
                 <span className="uppercase text-zinc-400 font-light">{props.label}</span>
             )}
-            <div className="flex bg-zinc-800 rounded-lg  overflow-hidden">
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
                 {DateUtils.proximosDias(7)
                     .filter((dia) => dia.getDay() !== 0)
                     .map((dia) => renderizarDia(dia))}

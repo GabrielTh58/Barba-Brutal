@@ -1,7 +1,6 @@
 'use client'
 
 import FormularioAgendamento from '@/components/agendamento/FormularioAgendamento'
-import Cabecalho from '@/components/shared/Cabecalho'
 import CabecalhoComTitulo from '@/components/shared/CabecalhoComTitulo'
 
 export default function Page() {
@@ -11,7 +10,7 @@ export default function Page() {
                 titulo="Agendamento de Servicos"
                 descricao="Seja atendido exatamente no horário marcado."
             />
-            <div className="container py-10">
+            <div className="container flex flex-col items-center px-4 py-8 mb-6 md:p-10">
                 <FormularioAgendamento />
             </div>
         </div>

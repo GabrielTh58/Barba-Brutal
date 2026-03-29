@@ -5,7 +5,7 @@ import useProfissionais from '../../data/hooks/useProfissionais'
 export default function NossosProfissionais() {
     const { profissionais } = useProfissionais()
     return (
-        <div className="flex flex-col gap-y-16">
+        <div className="flex flex-col gap-y-16 py-12">
             <TituloSecao
                 tag="Time"
                 principal="Nossos Brutos"
