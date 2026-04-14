@@ -31,6 +31,8 @@ RUN turbo run build --filter=backend...
 FROM node:20-slim AS runner
 WORKDIR /usr/src/app
 
+RUN apt-get update && apt-get install -y openssl && rm -rf /var/lib/apt/lists/*
+
 # Criamos o usuário de segurança sem precisar instalar o Alpine apk
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nodejs
@@ -41,6 +43,7 @@ COPY --from=installer --chown=nodejs:nodejs /usr/src/app/node_modules ./node_mod
 COPY --from=installer --chown=nodejs:nodejs /usr/src/app/packages ./packages
 
 # Copiamos os artefatos do backend
+COPY --from=installer --chown=nodejs:nodejs /usr/src/app/apps/backend/prisma ./prisma
 COPY --from=installer --chown=nodejs:nodejs /usr/src/app/apps/backend/package.json ./apps/backend/package.json
 COPY --from=installer --chown=nodejs:nodejs /usr/src/app/apps/backend/node_modules ./apps/backend/node_modules
 COPY --from=installer --chown=nodejs:nodejs /usr/src/app/apps/backend/dist ./apps/backend/dist
@@ -49,4 +52,4 @@ COPY --from=installer --chown=nodejs:nodejs /usr/src/app/apps/backend/dist ./app
 USER nodejs
 WORKDIR /usr/src/app/apps/backend
 
-CMD ["node", "dist/src/main.js"]
+CMD ["sh", "-c", "npx prisma migrate deploy --schema=./prisma/schema.prisma && node dist/src/main.js"]
