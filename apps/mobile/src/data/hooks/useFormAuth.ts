@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import useAPI from './useAPI'
 import useSessao from './useSessao'
+import { toast } from "sonner"
 
 export default function useFormAuth() {
     const [modo, setModo] = useState<'login' | 'cadastro'>('login')
@@ -16,16 +17,32 @@ export default function useFormAuth() {
 
     function alterarModo() {
         setModo(modo === 'login' ? 'cadastro' : 'login')
+        setErros({})
     }
 
-    async function submeter() {
-        if (modo === 'login' && validar()) {
-            await login()
-            limparFormulario()
-        } else if (validar()) {
-            await registrar()
-            await login()
-            limparFormulario()
+   async function submeter() {
+        setErros({})
+        const toastId = toast.loading('Processando...')
+
+        try {
+            if (modo === 'login' && validar()) {
+                await login()
+                toast.success('Login realizado com sucesso!', { id: toastId })
+                limparFormulario()
+            } else if (validar()) {
+                await registrar()
+                await login()
+                toast.success('Conta criada com sucesso!', { id: toastId })
+                limparFormulario()
+            } else {
+                toast.dismiss(toastId)
+            }
+        } catch (error: any) {
+            const mensagem = 
+                error?.response?.data?.message || 
+                error?.message || 
+                'Erro ao processar solicitação.'
+            toast.error(mensagem, { id: toastId }) 
         }
     }
 
@@ -53,6 +70,7 @@ export default function useFormAuth() {
         setEmail('')
         setSenha('')
         setModo('login')
+        setErros({})
     }
 
     return {

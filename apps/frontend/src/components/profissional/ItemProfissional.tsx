@@ -18,7 +18,7 @@ export default function ItemProfissional(props: ItemProfissionalProps) {
         <div className="flex flex-col rounded-xl bg-zinc-800 overflow-hidden">
             <div className="relative h-72 w-full">
                 <Image
-                    src={profissional.imagemURL}
+                    src={profissional.imagemURL ?? ''}
                     fill
                     alt={profissional.nome}
                     className="object-cover object-top"
@@ -29,8 +29,8 @@ export default function ItemProfissional(props: ItemProfissionalProps) {
                 <span className="text-sm text-zinc-400">{profissional.descricao}</span>
 
                 <Avaliacao
-                    nota={profissional.avaliacao}
-                    quantidade={profissional.quantidadeAvaliacoes}
+                    nota={profissional.avaliacao ?? 0}
+                    quantidade={profissional.quantidadeAvaliacoes ?? 0}
                 />
 
                 <div className="flex gap-3 text-zinc-300">

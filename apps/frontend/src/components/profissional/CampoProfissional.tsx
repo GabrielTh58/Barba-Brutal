@@ -1,12 +1,11 @@
-import useProfissionais from '@/data/hooks/useProfissionais'
 import { Profissional } from '@barbabrutal/core'
 import Image from 'next/image'
 
-export interface CampoProfissionalProps
-    extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'value' | 'onChange'> {
+export interface CampoProfissionalProps {
     label?: string
     value: Profissional | null
     onChange: (value: Profissional | null) => void
+    profissionais: Profissional[] 
 }
 
 function Opcao(props: {
@@ -23,7 +22,7 @@ function Opcao(props: {
             onClick={() => props.profissionalMudou(props.profissional)}
         >
             <Image
-                src={props.profissional.imagemURL}
+                src={props.profissional.imagemURL ?? ''}
                 height={150}
                 width={150}
                 alt={props.profissional.nome}
@@ -40,22 +39,22 @@ function Opcao(props: {
     )
 }
 
-export default function CampoProfissional(props: CampoProfissionalProps) {
-    const { profissionais } = useProfissionais()
-
-    return profissionais ? (
+export default function CampoProfissional({ label, profissionais, onChange, value }: CampoProfissionalProps) {
+    if (!profissionais.length) return null
+    
+    return (
         <div className="flex flex-col gap-5">
-            {props.label && <span className="text-sm uppercase text-zinc-400">{props.label}</span>}
+            {label && <span className="text-sm uppercase text-zinc-400">{label}</span>}
             <div className="grid grid-cols-3 self-start gap-5">
                 {profissionais.map((profissional) => (
                     <Opcao
                         key={profissional.id}
                         profissional={profissional}
-                        profissionalMudou={props.onChange}
-                        selecionado={profissional.id === props.value?.id}
+                        profissionalMudou={onChange}
+                        selecionado={profissional.id === value?.id}
                     />
                 ))}
             </div>
         </div>
-    ) : null
+    ) 
 }

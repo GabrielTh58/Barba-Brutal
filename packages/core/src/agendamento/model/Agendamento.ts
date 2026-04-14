@@ -3,7 +3,7 @@ import Profissional from '../../profissional/model/Profissional'
 import Servico from '../../servico/model/Servico'
 
 export default interface Agendamento {
-    id: number
+    id: string
     data: Date
     usuario: Usuario
     profissional: Partial<Profissional>

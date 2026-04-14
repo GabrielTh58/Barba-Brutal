@@ -4,7 +4,7 @@ import RepositorioAgendamento from '../provider/RepositorioAgendamento'
 
 type Entrada = {
     usuario: Usuario
-    id: number
+    id: string
 }
 
 export default class ExcluirAgendamento implements CasoDeUso<Entrada, void> {

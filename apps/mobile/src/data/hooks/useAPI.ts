@@ -21,7 +21,7 @@ export default function useAPI() {
     )
 
     const httpPost = useCallback(
-        async function httpPost(caminho: string, body: any) {
+        async function httpPost(caminho: string, body?: any) {
             try {
                 const uri = caminho.startsWith('/') ? caminho : `/${caminho}`
                 const urlCompleta = `${URL_BASE}${uri}`

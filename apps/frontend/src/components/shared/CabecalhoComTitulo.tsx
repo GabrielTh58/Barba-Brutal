@@ -8,7 +8,7 @@ interface CabecalhoComTituloProps {
 
 export default function CabecalhoComTitulo(props: CabecalhoComTituloProps) {
     return (
-        <div className="relative h-[180px]">
+        <div className="relative h-[180px] md:h-52">
             <Image src="/banners/principal.webp" fill alt="Barbearia" className="object-cover" />
             <div
                 className="
@@ -20,7 +20,7 @@ export default function CabecalhoComTitulo(props: CabecalhoComTituloProps) {
                 <Cabecalho />
                 <div className="container flex flex-col justify-center items-center pt-4">
                     <h1 className="text-2xl md:text-3xl font-bold text-center mb-1 text-zinc-200">{props.titulo}</h1>
-                    <p className="text-xs font-light text-center text-zinc-400">{props.descricao}</p>
+                    <p className="text-xs sm:text-sm font-light text-center text-zinc-300">{props.descricao}</p>
                 </div>
             </div>
         </div>

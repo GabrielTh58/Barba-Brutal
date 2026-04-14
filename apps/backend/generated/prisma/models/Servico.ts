@@ -27,19 +27,17 @@ export type AggregateServico = {
 }
 
 export type ServicoAvgAggregateOutputType = {
-  id: number | null
   preco: number | null
   qtdeSlots: number | null
 }
 
 export type ServicoSumAggregateOutputType = {
-  id: number | null
   preco: number | null
   qtdeSlots: number | null
 }
 
 export type ServicoMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   nome: string | null
   descricao: string | null
   preco: number | null
@@ -48,7 +46,7 @@ export type ServicoMinAggregateOutputType = {
 }
 
 export type ServicoMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   nome: string | null
   descricao: string | null
   preco: number | null
@@ -68,13 +66,11 @@ export type ServicoCountAggregateOutputType = {
 
 
 export type ServicoAvgAggregateInputType = {
-  id?: true
   preco?: true
   qtdeSlots?: true
 }
 
 export type ServicoSumAggregateInputType = {
-  id?: true
   preco?: true
   qtdeSlots?: true
 }
@@ -194,7 +190,7 @@ export type ServicoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 export type ServicoGroupByOutputType = {
-  id: number
+  id: string
   nome: string
   descricao: string
   preco: number
@@ -226,7 +222,7 @@ export type ServicoWhereInput = {
   AND?: Prisma.ServicoWhereInput | Prisma.ServicoWhereInput[]
   OR?: Prisma.ServicoWhereInput[]
   NOT?: Prisma.ServicoWhereInput | Prisma.ServicoWhereInput[]
-  id?: Prisma.IntFilter<"Servico"> | number
+  id?: Prisma.StringFilter<"Servico"> | string
   nome?: Prisma.StringFilter<"Servico"> | string
   descricao?: Prisma.StringFilter<"Servico"> | string
   preco?: Prisma.FloatFilter<"Servico"> | number
@@ -246,7 +242,7 @@ export type ServicoOrderByWithRelationInput = {
 }
 
 export type ServicoWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   nome?: string
   AND?: Prisma.ServicoWhereInput | Prisma.ServicoWhereInput[]
   OR?: Prisma.ServicoWhereInput[]
@@ -276,7 +272,7 @@ export type ServicoScalarWhereWithAggregatesInput = {
   AND?: Prisma.ServicoScalarWhereWithAggregatesInput | Prisma.ServicoScalarWhereWithAggregatesInput[]
   OR?: Prisma.ServicoScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ServicoScalarWhereWithAggregatesInput | Prisma.ServicoScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Servico"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Servico"> | string
   nome?: Prisma.StringWithAggregatesFilter<"Servico"> | string
   descricao?: Prisma.StringWithAggregatesFilter<"Servico"> | string
   preco?: Prisma.FloatWithAggregatesFilter<"Servico"> | number
@@ -285,6 +281,7 @@ export type ServicoScalarWhereWithAggregatesInput = {
 }
 
 export type ServicoCreateInput = {
+  id?: string
   nome: string
   descricao: string
   preco: number
@@ -294,7 +291,7 @@ export type ServicoCreateInput = {
 }
 
 export type ServicoUncheckedCreateInput = {
-  id?: number
+  id?: string
   nome: string
   descricao: string
   preco: number
@@ -304,6 +301,7 @@ export type ServicoUncheckedCreateInput = {
 }
 
 export type ServicoUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -313,7 +311,7 @@ export type ServicoUpdateInput = {
 }
 
 export type ServicoUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -323,7 +321,7 @@ export type ServicoUncheckedUpdateInput = {
 }
 
 export type ServicoCreateManyInput = {
-  id?: number
+  id?: string
   nome: string
   descricao: string
   preco: number
@@ -332,6 +330,7 @@ export type ServicoCreateManyInput = {
 }
 
 export type ServicoUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -340,7 +339,7 @@ export type ServicoUpdateManyMutationInput = {
 }
 
 export type ServicoUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -358,7 +357,6 @@ export type ServicoCountOrderByAggregateInput = {
 }
 
 export type ServicoAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   preco?: Prisma.SortOrder
   qtdeSlots?: Prisma.SortOrder
 }
@@ -382,7 +380,6 @@ export type ServicoMinOrderByAggregateInput = {
 }
 
 export type ServicoSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   preco?: Prisma.SortOrder
   qtdeSlots?: Prisma.SortOrder
 }
@@ -395,6 +392,22 @@ export type ServicoListRelationFilter = {
 
 export type ServicoOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type ServicoCreateNestedManyWithoutAgendamentosInput = {
@@ -436,6 +449,7 @@ export type ServicoUncheckedUpdateManyWithoutAgendamentosNestedInput = {
 }
 
 export type ServicoCreateWithoutAgendamentosInput = {
+  id?: string
   nome: string
   descricao: string
   preco: number
@@ -444,7 +458,7 @@ export type ServicoCreateWithoutAgendamentosInput = {
 }
 
 export type ServicoUncheckedCreateWithoutAgendamentosInput = {
-  id?: number
+  id?: string
   nome: string
   descricao: string
   preco: number
@@ -477,7 +491,7 @@ export type ServicoScalarWhereInput = {
   AND?: Prisma.ServicoScalarWhereInput | Prisma.ServicoScalarWhereInput[]
   OR?: Prisma.ServicoScalarWhereInput[]
   NOT?: Prisma.ServicoScalarWhereInput | Prisma.ServicoScalarWhereInput[]
-  id?: Prisma.IntFilter<"Servico"> | number
+  id?: Prisma.StringFilter<"Servico"> | string
   nome?: Prisma.StringFilter<"Servico"> | string
   descricao?: Prisma.StringFilter<"Servico"> | string
   preco?: Prisma.FloatFilter<"Servico"> | number
@@ -486,6 +500,7 @@ export type ServicoScalarWhereInput = {
 }
 
 export type ServicoUpdateWithoutAgendamentosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -494,7 +509,7 @@ export type ServicoUpdateWithoutAgendamentosInput = {
 }
 
 export type ServicoUncheckedUpdateWithoutAgendamentosInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -503,7 +518,7 @@ export type ServicoUncheckedUpdateWithoutAgendamentosInput = {
 }
 
 export type ServicoUncheckedUpdateManyWithoutAgendamentosInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
   preco?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -594,7 +609,7 @@ export type $ServicoPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     agendamentos: Prisma.$AgendamentoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     nome: string
     descricao: string
     preco: number
@@ -1024,7 +1039,7 @@ export interface Prisma__ServicoClient<T, Null = never, ExtArgs extends runtime.
  * Fields of the Servico model
  */
 export interface ServicoFieldRefs {
-  readonly id: Prisma.FieldRef<"Servico", 'Int'>
+  readonly id: Prisma.FieldRef<"Servico", 'String'>
   readonly nome: Prisma.FieldRef<"Servico", 'String'>
   readonly descricao: Prisma.FieldRef<"Servico", 'String'>
   readonly preco: Prisma.FieldRef<"Servico", 'Float'>

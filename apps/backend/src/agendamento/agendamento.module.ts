@@ -1,9 +1,9 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AgendamentoController } from './agendamento.controller';
-import { AuthModule } from 'src/auth/auth.module';
-import { AuthMiddleware } from 'src/auth/auth.middleware';
-import { DbModule } from 'src/db/db.module';
 import { AgendamentoPrisma } from './agendamento.prisma';
+import { AuthModule } from '../auth/auth.module';
+import { DbModule } from '../db/db.module';
+import { AuthMiddleware } from '../auth/auth.middleware';
 
 @Module({
   imports: [AuthModule, DbModule],

@@ -2,8 +2,7 @@ import { DateUtils } from '@barbabrutal/core'
 import CampoDia from './CampoDia'
 import CampoHorario from './CampoHorario'
 
-export interface CampoDataHoraProps
-    extends Omit<React.SelectHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'> {
+export interface CampoDataHoraProps {
     label?: string
     value: Date | null
     qtdeHorarios: number

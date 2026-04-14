@@ -1,4 +1,4 @@
-import { AgendaUtils, DateUtils, Profissional, Servico } from '@barbabrutal/core'
+import { Agendamento, AgendaUtils, DateUtils, Profissional, Servico } from '@barbabrutal/core'
 import { createContext, useCallback, useEffect, useState } from 'react'
 import useAPI from '../hooks/useAPI'
 import useSessao from '../hooks/useSessao'
@@ -9,6 +9,7 @@ export interface ContextoAgendamentoProps {
     data: Date | null
     dataValida: Date | null
     horariosOcupados: string[]
+    agendamentos: Agendamento[]
     selecionarProfissional: (profissional: Profissional | null) => void
     selecionarServicos: (servicos: Servico[]) => void
     selecionarData: (data: Date) => void
@@ -17,6 +18,7 @@ export interface ContextoAgendamentoProps {
     duracaoTotal: () => string
     precoTotal: () => number
     qtdeHorarios: () => number
+    buscarAgendamentos: (idProfissional: number, data: string) => Promise<void>
 }
 
 const ContextoAgendamento = createContext<ContextoAgendamentoProps>({} as any)
@@ -29,6 +31,7 @@ export function ProvedorAgendamento(props: any) {
     const [profissional, setProfissional] = useState<Profissional | null>(null)
     const [servicos, setServicos] = useState<Servico[]>([])
     const [data, setData] = useState<Date>(DateUtils.hojeComHoraZerada())
+    const [agendamentos, setAgendamentos] = useState<Agendamento[]>([])
 
     const dia = data.toISOString().slice(0, 10) ?? ''
 
@@ -77,6 +80,13 @@ export function ProvedorAgendamento(props: any) {
         [httpGet]
     )
 
+    const buscarAgendamentos = useCallback(async function (idProfissional: number, data: string) {
+        console.log(`Buscando agendamentos para profissional ${idProfissional} na data ${data}`);        
+        const resposta = await httpGet(`/agendamentos/${idProfissional}/${data}`)
+        setAgendamentos(resposta ?? [])
+    }, [httpGet])
+
+
     useEffect(() => {
         if (!dia || !profissional) return
         obterHorariosOcupados(dia, profissional).then(setHorariosOcupados)
@@ -98,6 +108,8 @@ export function ProvedorAgendamento(props: any) {
                 selecionarServicos: setServicos,
                 selecionarData: setData,
                 agendar,
+                agendamentos,
+                buscarAgendamentos,
                 podeAgendar,
                 duracaoTotal,
                 precoTotal,

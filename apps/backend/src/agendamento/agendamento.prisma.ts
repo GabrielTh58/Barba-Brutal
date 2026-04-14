@@ -1,14 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../db/prisma.service';
-import Agendamento from '@barbabrutal/core/src/agendamento/model/Agendamento';
-import RepositorioAgendamento from '@barbabrutal/core/src/agendamento/provider/RepositorioAgendamento';
+import { Agendamento, RepositorioAgendamento } from '@barbabrutal/core';
 
 @Injectable()
 export class AgendamentoPrisma implements RepositorioAgendamento {
   constructor(private readonly prisma: PrismaService) {}
 
-  async criar(agendamento: Agendamento): Promise<void> {
-    await this.prisma.agendamento.create({
+  async criar(agendamento: Agendamento): Promise<Agendamento | void> {
+    return await this.prisma.agendamento.create({
       data: {
         data: agendamento.data,
         usuario: { connect: { id: agendamento.usuario.id } },
@@ -17,10 +16,17 @@ export class AgendamentoPrisma implements RepositorioAgendamento {
           connect: agendamento.servicos.map((servico) => ({ id: servico.id })),
         },
       },
+      include: {
+        usuario: { select: { id: true, nome: true, email: true } },
+        profissional: { select: { id: true, nome: true } },
+        servicos: {
+          select: { id: true, nome: true, preco: true, qtdeSlots: true },
+        },
+      },
     });
   }
 
-  buscarPorId(id: number): Promise<Agendamento | null> {
+  buscarPorId(id: string): Promise<Agendamento | null> {
     return this.prisma.agendamento.findUnique({
       where: { id },
       include: {
@@ -54,7 +60,7 @@ export class AgendamentoPrisma implements RepositorioAgendamento {
   }
 
   buscarPorProfissionalEData(
-    profissional: number,
+    profissional: string,
     data: Date,
   ): Promise<Agendamento[]> {
     const ano = data.getFullYear();
@@ -79,7 +85,7 @@ export class AgendamentoPrisma implements RepositorioAgendamento {
     });
   }
 
-  async excluir(id: number): Promise<void> {
+  async excluir(id: string): Promise<void> {
     await this.prisma.agendamento.delete({
       where: { id },
       include: { servicos: true },

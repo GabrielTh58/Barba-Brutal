@@ -1,8 +1,9 @@
 import { Profissional } from "../profissional";
+import { Id } from "../utils/Id";
 
 const profissionais: Profissional[] = [
   {
-    id: 1,
+    id: Id.gerar(),
     nome: "Marcão Machadada",
     descricao:
       "Salve, salve, galera! Sou o Marcão Machadada, o único cabeleireiro que pode transformar uma juba de leão em um corte digno de um rei com um único movimento de tesoura.",
@@ -11,7 +12,7 @@ const profissionais: Profissional[] = [
     quantidadeAvaliacoes: 87,
   },
   {
-    id: 2,
+    id: Id.gerar(),
     nome: "Beto Brutal",
     descricao:
       "Quando o assunto é barba, ninguém faz melhor que Beto Brutal! Suas lâminas afiadas são lendárias e seu estilo é inconfundível. Para um visual marcante e robusto, ele é o seu homem!",
@@ -20,7 +21,7 @@ const profissionais: Profissional[] = [
     quantidadeAvaliacoes: 39,
   },
   {
-    id: 3,
+    id: Id.gerar(),
     nome: "Kathya Tesourada",
     descricao:
       "Kathya não tem medo de tesourar! Com precisão e ousadia, ela transforma qualquer cabelo em uma obra-prima rústica. Seu lema? Corte raiz sem perder a feminilidade!",
@@ -29,7 +30,7 @@ const profissionais: Profissional[] = [
     quantidadeAvaliacoes: 91,
   },
   {
-    id: 4,
+    id: Id.gerar(),
     nome: "Sérgio Serrador",
     descricao:
       "Sérgio é conhecido por sua técnica impecável e estilo único. Com sua serra (ou melhor, tesoura) em mãos, ele cria visuais que impressionam. Barba bem-feita é com ele mesmo!",
@@ -38,7 +39,7 @@ const profissionais: Profissional[] = [
     quantidadeAvaliacoes: 29,
   },
   {
-    id: 5,
+    id: Id.gerar(),
     nome: "Rafa Raspa Tudo",
     descricao:
       "Para aqueles que preferem um look mais rente, Rafa é o especialista! Sua máquina raspa tudo com precisão, deixando um acabamento perfeito. Raspar é a sua arte!",
@@ -47,7 +48,7 @@ const profissionais: Profissional[] = [
     quantidadeAvaliacoes: 44,
   },
   {
-    id: 6,
+    id: Id.gerar(),
     nome: "Fernanda Faísca",
     descricao:
       "Fernanda traz um toque de brilho e energia a cada corte. Com suas lâminas ágeis, ela faz milagres em qualquer tipo de cabelo. Precisa de um look cheio de faísca? É com ela mesmo!",

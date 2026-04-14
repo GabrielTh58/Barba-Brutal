@@ -74,6 +74,7 @@ export function ProvedorSessao(props: any) {
                     email: payload.email,
                     barbeiro: payload.barbeiro,
                     telefone: payload.telefone,
+                    profissionalId: payload.profissionalId,
                 },
             }
         } catch (e) {

@@ -3,7 +3,7 @@ import Agendamento from '../model/Agendamento'
 import RepositorioAgendamento from '../provider/RepositorioAgendamento'
 
 type Entrada = {
-    profissional: number
+    profissional: string
     data: Date
 }
 

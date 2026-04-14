@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { RepositorioUsuario, Usuario } from '@barbabrutal/core';
-import { PrismaService } from 'src/db/prisma.service';
+import { PrismaService } from '../db/prisma.service';
 
 @Injectable()
 export class UsuarioPrisma implements RepositorioUsuario {
@@ -8,7 +8,7 @@ export class UsuarioPrisma implements RepositorioUsuario {
 
   async salvar(usuario: Usuario): Promise<void> {
     await this.prisma.usuario.upsert({
-      where: { id: usuario.id ?? -1 },
+      where: { email: usuario.email },
       update: usuario,
       create: usuario as any,
     });

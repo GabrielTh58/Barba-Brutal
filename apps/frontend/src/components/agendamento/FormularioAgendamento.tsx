@@ -1,14 +1,21 @@
+'use client'
 import CampoDataHora from '../shared/formulario/CampoDataHora'
 import CampoProfissional from '../profissional/CampoProfissional'
 import CampoServicos from '../servico/CampoServicos'
 import useAgendamento from '@/data/hooks/useAgendamento'
 import Passos from '../shared/Passos'
 import Sumario from './Sumario'
+import { Profissional, Servico } from '@barbabrutal/core'
 
-export default function FormularioAgendamento() {
+interface FormularioAgendamentoProps {
+    profissionais: Profissional[]
+    servicos: Servico[]
+}
+
+export default function FormularioAgendamento({ profissionais, servicos  }: FormularioAgendamentoProps) {
     const {
         profissional,
-        servicos,
+        servicosSelecionados ,
         data,
         horariosOcupados,
         selecionarProfissional,
@@ -23,7 +30,7 @@ export default function FormularioAgendamento() {
         <div className="flex flex-col items-center  lg:flex-row w-full gap-10">
             <Passos
                 labels={['Selecione o Profissional', 'Selecione os Serviços', 'Escolha o Horário']}
-                permiteProximoPasso={[!!profissional, servicos.length > 0, podeAgendar()]}
+                permiteProximoPasso={[!!profissional, servicosSelecionados .length > 0, podeAgendar()]}
                 acao={agendar}
                 labelAcao="Agendar"
             >
@@ -31,20 +38,19 @@ export default function FormularioAgendamento() {
                     label="Profissionais disponíveis"
                     value={profissional}
                     onChange={selecionarProfissional}
-                    className="input"
+                    profissionais={profissionais}
                 />
                 <CampoServicos
                     label="Serviços disponíveis"
-                    value={servicos}
+                    value={servicosSelecionados }
                     onChange={selecionarServicos}
-                    className="input"
+                    servicos={servicos}
                 />
                 <CampoDataHora
                     label="Data e Hora"
                     value={data}
                     onChange={(d) => selecionarData(d!)}
                     horariosOcupados={horariosOcupados}
-                    className="input"
                     qtdeHorarios={qtdeHorarios()}
                 />
             </Passos>

@@ -1,12 +1,11 @@
 import { Servico } from '@barbabrutal/core'
-import useServicos from '@/data/hooks/useServicos'
 import Image from 'next/image'
 
-export interface CampoServicosProps
-    extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, 'value' | 'onChange'> {
+export interface CampoServicosProps {
     label?: string
     value: Servico[]
     onChange: (value: Servico[]) => void
+    servicos: Servico[]
 }
 
 function Opcao(props: {
@@ -40,21 +39,21 @@ function Opcao(props: {
     )
 }
 
-export default function CampoServicos(props: CampoServicosProps) {
-    const { servicos } = useServicos()
+export default function CampoServicos({ label, servicos, onChange, value }: CampoServicosProps) {
 
     function alternarMarcacao(servico: Servico) {
-        const marcado = props.value.some((s) => s.id === servico.id)
+        const marcado = value.some((s) => s.id === servico.id)
         if (marcado) {
-            props.onChange(props.value.filter((s) => s.id !== servico.id))
+            onChange(value.filter((s) => s.id !== servico.id))
         } else {
-            props.onChange([...props.value, servico])
+            onChange([...value, servico])
         }
     }
 
-    return servicos ? (
+    if(!servicos.length) return null 
+    return (
         <div className="flex flex-col gap-5">
-            {props.label && <span className="text-sm uppercase text-zinc-400">{props.label}</span>}
+            {label && <span className="text-sm uppercase text-zinc-400">{label}</span>}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-7 self-start">
                 {servicos.map((servico) => {
                     return (
@@ -62,11 +61,11 @@ export default function CampoServicos(props: CampoServicosProps) {
                             key={servico.id}
                             servico={servico}
                             servicoMudou={alternarMarcacao}
-                            selecionado={props.value.some((s) => s.id === servico.id)}
+                            selecionado={value.some((s) => s.id === servico.id)}
                         />
                     )
                 })}
             </div>
         </div>
-    ) : null
+    ) 
 }

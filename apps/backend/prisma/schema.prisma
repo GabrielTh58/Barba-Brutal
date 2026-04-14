@@ -9,31 +9,34 @@ datasource db {
 }
 
 model Usuario {
-  id           Int           @id @default(autoincrement())
+  id             String          @id @default(uuid())
   nome         String
   email        String        @unique
   senha        String
   telefone     String?
   barbeiro     Boolean
   agendamentos Agendamento[]
+  profissionalId String?          @unique 
+  profissional   Profissional? @relation(fields: [profissionalId], references: [id])
 
   @@map("usuarios")
 }
 
 model Profissional {
-  id                   Int           @id @default(autoincrement())
+  id             String          @id @default(uuid())
   nome                 String        @unique
   descricao            String
-  imagemURL            String
-  avaliacao            Float
-  quantidadeAvaliacoes Int
+  imagemURL            String?
+  avaliacao            Float?
+  quantidadeAvaliacoes Int?
   agendamentos         Agendamento[]
+  usuario              Usuario?
 
   @@map("profissionais")
 }
 
 model Servico {
-  id           Int           @id @default(autoincrement())
+  id             String          @id @default(uuid())
   nome         String        @unique
   descricao    String
   preco        Float
@@ -45,10 +48,10 @@ model Servico {
 }
 
 model Agendamento {
-  id             Int          @id @default(autoincrement())
+  id             String          @id @default(uuid())
   data           DateTime
-  usuarioId      Int
-  profissionalId Int
+  usuarioId      String
+  profissionalId String
   profissional   Profissional @relation(fields: [profissionalId], references: [id])
   usuario        Usuario      @relation(fields: [usuarioId], references: [id])
   servicos       Servico[]    @relation("AgendamentoToServico")

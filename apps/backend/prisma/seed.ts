@@ -28,26 +28,22 @@ async function seed() {
     data: servicos as any,
   });
 
-  console.log('⏳ Populando Usuários...');
-  const senha = '$2b$10$9LQTRK3LRzIddKYW2C4MTelydFzk5Ys4JoROPajNqvYshhrn1PRa6';
-  const usuarios: Usuario[] = [
-    {
-      nome: 'Marcão Machadada',
-      email: 'marcao@barbabrutal.app',
-      senha,
-      telefone: '(11) 99999-9999',
-      barbeiro: true,
-    },
-    {
-      nome: 'Gabriel Oliveira',
-      email: 'gabriel@barbabrutal.app',
-      senha,
-      telefone: '(11) 99999-9999',
-      barbeiro: false,
-    },
-  ];
+  const profissionalMarcao = await prisma.profissional.findFirst({
+    where: { nome: 'Marcão Machadada' }
+  });
 
-  await prisma.usuario.createMany({ data: usuarios as any });
+  console.log('⏳ Populando Usuários...');
+  const senha = '$2b$10$9LQTRK3LRzIddKYW2C4MTelydFzk5Ys4JoROPajNqvYshhrn1PRa6'; //#Senha123
+  const usuarios: Usuario = {
+    nome: 'Marcão Machadada',
+    email: 'marcao@barbabrutal.app',
+    senha,
+    telefone: '(11) 99999-9999',
+    barbeiro: true,
+    profissionalId: profissionalMarcao?.id,
+  };
+
+  await prisma.usuario.create({ data: usuarios as any });
 
   console.log('✅ Seed finalizado com sucesso!');
 }

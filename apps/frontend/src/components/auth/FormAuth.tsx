@@ -7,6 +7,7 @@ import CampoEmail from '../shared/formulario/CampoEmail'
 import CampoTexto from '../shared/formulario/CampoTexto'
 import CampoTelefone from '../shared/formulario/CampoTelefone'
 import CampoSenha from '../shared/formulario/CampoSenha'
+import { IconLoader } from '@tabler/icons-react'
 
 export default function FormAuth() {
     const {
@@ -21,8 +22,8 @@ export default function FormAuth() {
         alterarTelefone,
         alterarModo,
         submeter,
+        carregando
     } = useFormAuth()
-
     return (
         <div className="h-screen">
             <Image src="/banners/principal.webp" fill alt="Banner" />
@@ -55,8 +56,16 @@ export default function FormAuth() {
                         />
                     )}
                     <div className="flex gap-2">
-                        <button onClick={submeter} className="button flex-1 bg-green-600">
-                            {modo === 'login' ? 'Entrar' : 'Cadastrar'}
+                        <button 
+                            onClick={submeter}
+                            className="button flex-1 bg-green-600 flex justify-center"
+                            disabled={carregando}
+                        >
+                            {carregando ? (
+                                <IconLoader className="animate-spin ml-2" />
+                            ) : (
+                                modo === 'login' ? 'Entrar' : 'Cadastrar'
+                            )}
                         </button>
                         <Link href="/" className="button flex-1 flex justify-center">
                             Cancelar

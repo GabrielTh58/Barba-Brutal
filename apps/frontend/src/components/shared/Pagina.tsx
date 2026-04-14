@@ -8,7 +8,7 @@ export interface PaginaProps {
 export default function Pagina(props: PaginaProps) {
     return (
         <div className="flex flex-col min-h-screen w-screen">
-            <main className={props.className ?? ''}>{props.children}</main>
+            <main className={`flex-1 ${props.className ?? ''}`}>{props.children}</main>
             <Rodape />
         </div>
     )

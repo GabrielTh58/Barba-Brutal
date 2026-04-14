@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 type Card = {
-    id: number
+    id: string
     content: JSX.Element | React.ReactNode | string
     className: string
     thumbnail: string

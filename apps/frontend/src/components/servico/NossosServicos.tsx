@@ -1,9 +1,9 @@
 import ItemServico from './ItemServico'
 import TituloSecao from '../shared/TituloSecao'
-import useServicos from '../../data/hooks/useServicos'
+import { buscarServicosCache } from '@/data/api/servicos.api'
 
-export default function NossosServicos() {
-    const { servicos } = useServicos()
+export default async function NossosServicos() {
+    const servicos = await buscarServicosCache()
 
     return (
         <div className="flex flex-col gap-y-16 py-12">

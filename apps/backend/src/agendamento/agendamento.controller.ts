@@ -9,8 +9,8 @@ import {
 } from '@barbabrutal/core';
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 
-import { UsuarioLogado } from 'src/shared/usuario.decorator';
 import { AgendamentoPrisma } from './agendamento.prisma';
+import { UsuarioLogado } from '../shared/usuario.decorator';
 
 @Controller('agendamentos')
 export class AgendamentoController {
@@ -20,10 +20,10 @@ export class AgendamentoController {
   async novoAgendamento(
     @Body() dados: Agendamento,
     @UsuarioLogado() usuario: Usuario,
-  ) {
+  ): Promise<Agendamento | void> {
     const agendamento: Agendamento = { ...dados, data: new Date(dados.data) };
     const casoDeUso = new NovoAgendamento(this.repo);
-    await casoDeUso.executar({ agendamento, usuario });
+    return await casoDeUso.executar({ agendamento, usuario });
   }
 
   @Get()
@@ -31,19 +31,7 @@ export class AgendamentoController {
     const casoDeUso = new BuscarAgendamentosCliente(this.repo);
     return casoDeUso.executar(usuario);
   }
-
-  @Get(':profissional/:data')
-  buscarAgendaProfissionalPorDia(
-    @Param('profissional') profissional: string,
-    @Param('data') data: string,
-  ) {
-    const casoDeUso = new BuscarAgendaProfissionalPorDia(this.repo);
-    return casoDeUso.executar({
-      profissional: +profissional,
-      data: new Date(data),
-    });
-  }
-
+  
   @Get('ocupacao/:profissional/:data')
   buscarOcupacaoPorProfissionalEData(
     @Param('profissional') profissional: string,
@@ -51,8 +39,20 @@ export class AgendamentoController {
   ) {
     const casoDeUso = new ObterHorariosOcupados(this.repo);
     return casoDeUso.executar({
-      profissionalId: +profissional,
+      profissionalId: profissional,
       data: new Date(dataParam),
+    });
+  }
+  
+  @Get(':profissional/:data')
+  buscarAgendaProfissionalPorDia(
+    @Param('profissional') profissional: string,
+    @Param('data') data: string,
+  ) {
+    const casoDeUso = new BuscarAgendaProfissionalPorDia(this.repo);
+    return casoDeUso.executar({
+      profissional,
+      data: new Date(data),
     });
   }
 
@@ -63,7 +63,7 @@ export class AgendamentoController {
   ) {
     const casoDeUso = new ExcluirAgendamento(this.repo);
     await casoDeUso.executar({
-      id: +id,
+      id,
       usuario,
     });
   }

@@ -28,15 +28,16 @@ export default function MenuUsuario() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 <DropdownMenuItem>
-                    <Link href="/" className="flex gap-2">
+                    <Link href="/" className="flex gap-2 cursor-pointer">
                         <IconHome size={18} />
                         <span>Início</span>
                     </Link>
                 </DropdownMenuItem>
+
                 <DropdownMenuItem>
-                    <Link href="/agendamento" className="flex gap-2">
+                    <Link href="/agendamento" className="flex gap-2 cursor-pointer">
                         <IconCalendar size={18} />
-                        <span>Agendar</span>
+                        <span>{usuario.barbeiro ? 'Agendamentos' : 'Agendar'}</span>
                     </Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />

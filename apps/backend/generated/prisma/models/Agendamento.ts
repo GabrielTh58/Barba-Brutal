@@ -20,36 +20,22 @@ export type AgendamentoModel = runtime.Types.Result.DefaultSelection<Prisma.$Age
 
 export type AggregateAgendamento = {
   _count: AgendamentoCountAggregateOutputType | null
-  _avg: AgendamentoAvgAggregateOutputType | null
-  _sum: AgendamentoSumAggregateOutputType | null
   _min: AgendamentoMinAggregateOutputType | null
   _max: AgendamentoMaxAggregateOutputType | null
 }
 
-export type AgendamentoAvgAggregateOutputType = {
-  id: number | null
-  usuarioId: number | null
-  profissionalId: number | null
-}
-
-export type AgendamentoSumAggregateOutputType = {
-  id: number | null
-  usuarioId: number | null
-  profissionalId: number | null
-}
-
 export type AgendamentoMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   data: Date | null
-  usuarioId: number | null
-  profissionalId: number | null
+  usuarioId: string | null
+  profissionalId: string | null
 }
 
 export type AgendamentoMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   data: Date | null
-  usuarioId: number | null
-  profissionalId: number | null
+  usuarioId: string | null
+  profissionalId: string | null
 }
 
 export type AgendamentoCountAggregateOutputType = {
@@ -60,18 +46,6 @@ export type AgendamentoCountAggregateOutputType = {
   _all: number
 }
 
-
-export type AgendamentoAvgAggregateInputType = {
-  id?: true
-  usuarioId?: true
-  profissionalId?: true
-}
-
-export type AgendamentoSumAggregateInputType = {
-  id?: true
-  usuarioId?: true
-  profissionalId?: true
-}
 
 export type AgendamentoMinAggregateInputType = {
   id?: true
@@ -133,18 +107,6 @@ export type AgendamentoAggregateArgs<ExtArgs extends runtime.Types.Extensions.In
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: AgendamentoAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: AgendamentoSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: AgendamentoMinAggregateInputType
@@ -175,20 +137,16 @@ export type AgendamentoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   _count?: AgendamentoCountAggregateInputType | true
-  _avg?: AgendamentoAvgAggregateInputType
-  _sum?: AgendamentoSumAggregateInputType
   _min?: AgendamentoMinAggregateInputType
   _max?: AgendamentoMaxAggregateInputType
 }
 
 export type AgendamentoGroupByOutputType = {
-  id: number
+  id: string
   data: Date
-  usuarioId: number
-  profissionalId: number
+  usuarioId: string
+  profissionalId: string
   _count: AgendamentoCountAggregateOutputType | null
-  _avg: AgendamentoAvgAggregateOutputType | null
-  _sum: AgendamentoSumAggregateOutputType | null
   _min: AgendamentoMinAggregateOutputType | null
   _max: AgendamentoMaxAggregateOutputType | null
 }
@@ -212,10 +170,10 @@ export type AgendamentoWhereInput = {
   AND?: Prisma.AgendamentoWhereInput | Prisma.AgendamentoWhereInput[]
   OR?: Prisma.AgendamentoWhereInput[]
   NOT?: Prisma.AgendamentoWhereInput | Prisma.AgendamentoWhereInput[]
-  id?: Prisma.IntFilter<"Agendamento"> | number
+  id?: Prisma.StringFilter<"Agendamento"> | string
   data?: Prisma.DateTimeFilter<"Agendamento"> | Date | string
-  usuarioId?: Prisma.IntFilter<"Agendamento"> | number
-  profissionalId?: Prisma.IntFilter<"Agendamento"> | number
+  usuarioId?: Prisma.StringFilter<"Agendamento"> | string
+  profissionalId?: Prisma.StringFilter<"Agendamento"> | string
   profissional?: Prisma.XOR<Prisma.ProfissionalScalarRelationFilter, Prisma.ProfissionalWhereInput>
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
   servicos?: Prisma.ServicoListRelationFilter
@@ -232,13 +190,13 @@ export type AgendamentoOrderByWithRelationInput = {
 }
 
 export type AgendamentoWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.AgendamentoWhereInput | Prisma.AgendamentoWhereInput[]
   OR?: Prisma.AgendamentoWhereInput[]
   NOT?: Prisma.AgendamentoWhereInput | Prisma.AgendamentoWhereInput[]
   data?: Prisma.DateTimeFilter<"Agendamento"> | Date | string
-  usuarioId?: Prisma.IntFilter<"Agendamento"> | number
-  profissionalId?: Prisma.IntFilter<"Agendamento"> | number
+  usuarioId?: Prisma.StringFilter<"Agendamento"> | string
+  profissionalId?: Prisma.StringFilter<"Agendamento"> | string
   profissional?: Prisma.XOR<Prisma.ProfissionalScalarRelationFilter, Prisma.ProfissionalWhereInput>
   usuario?: Prisma.XOR<Prisma.UsuarioScalarRelationFilter, Prisma.UsuarioWhereInput>
   servicos?: Prisma.ServicoListRelationFilter
@@ -250,23 +208,22 @@ export type AgendamentoOrderByWithAggregationInput = {
   usuarioId?: Prisma.SortOrder
   profissionalId?: Prisma.SortOrder
   _count?: Prisma.AgendamentoCountOrderByAggregateInput
-  _avg?: Prisma.AgendamentoAvgOrderByAggregateInput
   _max?: Prisma.AgendamentoMaxOrderByAggregateInput
   _min?: Prisma.AgendamentoMinOrderByAggregateInput
-  _sum?: Prisma.AgendamentoSumOrderByAggregateInput
 }
 
 export type AgendamentoScalarWhereWithAggregatesInput = {
   AND?: Prisma.AgendamentoScalarWhereWithAggregatesInput | Prisma.AgendamentoScalarWhereWithAggregatesInput[]
   OR?: Prisma.AgendamentoScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AgendamentoScalarWhereWithAggregatesInput | Prisma.AgendamentoScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Agendamento"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Agendamento"> | string
   data?: Prisma.DateTimeWithAggregatesFilter<"Agendamento"> | Date | string
-  usuarioId?: Prisma.IntWithAggregatesFilter<"Agendamento"> | number
-  profissionalId?: Prisma.IntWithAggregatesFilter<"Agendamento"> | number
+  usuarioId?: Prisma.StringWithAggregatesFilter<"Agendamento"> | string
+  profissionalId?: Prisma.StringWithAggregatesFilter<"Agendamento"> | string
 }
 
 export type AgendamentoCreateInput = {
+  id?: string
   data: Date | string
   profissional: Prisma.ProfissionalCreateNestedOneWithoutAgendamentosInput
   usuario: Prisma.UsuarioCreateNestedOneWithoutAgendamentosInput
@@ -274,14 +231,15 @@ export type AgendamentoCreateInput = {
 }
 
 export type AgendamentoUncheckedCreateInput = {
-  id?: number
+  id?: string
   data: Date | string
-  usuarioId: number
-  profissionalId: number
+  usuarioId: string
+  profissionalId: string
   servicos?: Prisma.ServicoUncheckedCreateNestedManyWithoutAgendamentosInput
 }
 
 export type AgendamentoUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profissional?: Prisma.ProfissionalUpdateOneRequiredWithoutAgendamentosNestedInput
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutAgendamentosNestedInput
@@ -289,29 +247,30 @@ export type AgendamentoUpdateInput = {
 }
 
 export type AgendamentoUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
-  profissionalId?: Prisma.IntFieldUpdateOperationsInput | number
+  usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
+  profissionalId?: Prisma.StringFieldUpdateOperationsInput | string
   servicos?: Prisma.ServicoUncheckedUpdateManyWithoutAgendamentosNestedInput
 }
 
 export type AgendamentoCreateManyInput = {
-  id?: number
+  id?: string
   data: Date | string
-  usuarioId: number
-  profissionalId: number
+  usuarioId: string
+  profissionalId: string
 }
 
 export type AgendamentoUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AgendamentoUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
-  profissionalId?: Prisma.IntFieldUpdateOperationsInput | number
+  usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
+  profissionalId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AgendamentoListRelationFilter = {
@@ -331,12 +290,6 @@ export type AgendamentoCountOrderByAggregateInput = {
   profissionalId?: Prisma.SortOrder
 }
 
-export type AgendamentoAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  usuarioId?: Prisma.SortOrder
-  profissionalId?: Prisma.SortOrder
-}
-
 export type AgendamentoMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   data?: Prisma.SortOrder
@@ -347,12 +300,6 @@ export type AgendamentoMaxOrderByAggregateInput = {
 export type AgendamentoMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   data?: Prisma.SortOrder
-  usuarioId?: Prisma.SortOrder
-  profissionalId?: Prisma.SortOrder
-}
-
-export type AgendamentoSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
   profissionalId?: Prisma.SortOrder
 }
@@ -484,15 +431,16 @@ export type DateTimeFieldUpdateOperationsInput = {
 }
 
 export type AgendamentoCreateWithoutUsuarioInput = {
+  id?: string
   data: Date | string
   profissional: Prisma.ProfissionalCreateNestedOneWithoutAgendamentosInput
   servicos?: Prisma.ServicoCreateNestedManyWithoutAgendamentosInput
 }
 
 export type AgendamentoUncheckedCreateWithoutUsuarioInput = {
-  id?: number
+  id?: string
   data: Date | string
-  profissionalId: number
+  profissionalId: string
   servicos?: Prisma.ServicoUncheckedCreateNestedManyWithoutAgendamentosInput
 }
 
@@ -526,22 +474,23 @@ export type AgendamentoScalarWhereInput = {
   AND?: Prisma.AgendamentoScalarWhereInput | Prisma.AgendamentoScalarWhereInput[]
   OR?: Prisma.AgendamentoScalarWhereInput[]
   NOT?: Prisma.AgendamentoScalarWhereInput | Prisma.AgendamentoScalarWhereInput[]
-  id?: Prisma.IntFilter<"Agendamento"> | number
+  id?: Prisma.StringFilter<"Agendamento"> | string
   data?: Prisma.DateTimeFilter<"Agendamento"> | Date | string
-  usuarioId?: Prisma.IntFilter<"Agendamento"> | number
-  profissionalId?: Prisma.IntFilter<"Agendamento"> | number
+  usuarioId?: Prisma.StringFilter<"Agendamento"> | string
+  profissionalId?: Prisma.StringFilter<"Agendamento"> | string
 }
 
 export type AgendamentoCreateWithoutProfissionalInput = {
+  id?: string
   data: Date | string
   usuario: Prisma.UsuarioCreateNestedOneWithoutAgendamentosInput
   servicos?: Prisma.ServicoCreateNestedManyWithoutAgendamentosInput
 }
 
 export type AgendamentoUncheckedCreateWithoutProfissionalInput = {
-  id?: number
+  id?: string
   data: Date | string
-  usuarioId: number
+  usuarioId: string
   servicos?: Prisma.ServicoUncheckedCreateNestedManyWithoutAgendamentosInput
 }
 
@@ -572,16 +521,17 @@ export type AgendamentoUpdateManyWithWhereWithoutProfissionalInput = {
 }
 
 export type AgendamentoCreateWithoutServicosInput = {
+  id?: string
   data: Date | string
   profissional: Prisma.ProfissionalCreateNestedOneWithoutAgendamentosInput
   usuario: Prisma.UsuarioCreateNestedOneWithoutAgendamentosInput
 }
 
 export type AgendamentoUncheckedCreateWithoutServicosInput = {
-  id?: number
+  id?: string
   data: Date | string
-  usuarioId: number
-  profissionalId: number
+  usuarioId: string
+  profissionalId: string
 }
 
 export type AgendamentoCreateOrConnectWithoutServicosInput = {
@@ -606,73 +556,76 @@ export type AgendamentoUpdateManyWithWhereWithoutServicosInput = {
 }
 
 export type AgendamentoCreateManyUsuarioInput = {
-  id?: number
+  id?: string
   data: Date | string
-  profissionalId: number
+  profissionalId: string
 }
 
 export type AgendamentoUpdateWithoutUsuarioInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profissional?: Prisma.ProfissionalUpdateOneRequiredWithoutAgendamentosNestedInput
   servicos?: Prisma.ServicoUpdateManyWithoutAgendamentosNestedInput
 }
 
 export type AgendamentoUncheckedUpdateWithoutUsuarioInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profissionalId?: Prisma.IntFieldUpdateOperationsInput | number
+  profissionalId?: Prisma.StringFieldUpdateOperationsInput | string
   servicos?: Prisma.ServicoUncheckedUpdateManyWithoutAgendamentosNestedInput
 }
 
 export type AgendamentoUncheckedUpdateManyWithoutUsuarioInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  profissionalId?: Prisma.IntFieldUpdateOperationsInput | number
+  profissionalId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AgendamentoCreateManyProfissionalInput = {
-  id?: number
+  id?: string
   data: Date | string
-  usuarioId: number
+  usuarioId: string
 }
 
 export type AgendamentoUpdateWithoutProfissionalInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutAgendamentosNestedInput
   servicos?: Prisma.ServicoUpdateManyWithoutAgendamentosNestedInput
 }
 
 export type AgendamentoUncheckedUpdateWithoutProfissionalInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
+  usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
   servicos?: Prisma.ServicoUncheckedUpdateManyWithoutAgendamentosNestedInput
 }
 
 export type AgendamentoUncheckedUpdateManyWithoutProfissionalInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
+  usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AgendamentoUpdateWithoutServicosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profissional?: Prisma.ProfissionalUpdateOneRequiredWithoutAgendamentosNestedInput
   usuario?: Prisma.UsuarioUpdateOneRequiredWithoutAgendamentosNestedInput
 }
 
 export type AgendamentoUncheckedUpdateWithoutServicosInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
-  profissionalId?: Prisma.IntFieldUpdateOperationsInput | number
+  usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
+  profissionalId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AgendamentoUncheckedUpdateManyWithoutServicosInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   data?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  usuarioId?: Prisma.IntFieldUpdateOperationsInput | number
-  profissionalId?: Prisma.IntFieldUpdateOperationsInput | number
+  usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
+  profissionalId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -766,10 +719,10 @@ export type $AgendamentoPayload<ExtArgs extends runtime.Types.Extensions.Interna
     servicos: Prisma.$ServicoPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     data: Date
-    usuarioId: number
-    profissionalId: number
+    usuarioId: string
+    profissionalId: string
   }, ExtArgs["result"]["agendamento"]>
   composites: {}
 }
@@ -1196,10 +1149,10 @@ export interface Prisma__AgendamentoClient<T, Null = never, ExtArgs extends runt
  * Fields of the Agendamento model
  */
 export interface AgendamentoFieldRefs {
-  readonly id: Prisma.FieldRef<"Agendamento", 'Int'>
+  readonly id: Prisma.FieldRef<"Agendamento", 'String'>
   readonly data: Prisma.FieldRef<"Agendamento", 'DateTime'>
-  readonly usuarioId: Prisma.FieldRef<"Agendamento", 'Int'>
-  readonly profissionalId: Prisma.FieldRef<"Agendamento", 'Int'>
+  readonly usuarioId: Prisma.FieldRef<"Agendamento", 'String'>
+  readonly profissionalId: Prisma.FieldRef<"Agendamento", 'String'>
 }
     
 

@@ -27,19 +27,17 @@ export type AggregateProfissional = {
 }
 
 export type ProfissionalAvgAggregateOutputType = {
-  id: number | null
   avaliacao: number | null
   quantidadeAvaliacoes: number | null
 }
 
 export type ProfissionalSumAggregateOutputType = {
-  id: number | null
   avaliacao: number | null
   quantidadeAvaliacoes: number | null
 }
 
 export type ProfissionalMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   nome: string | null
   descricao: string | null
   imagemURL: string | null
@@ -48,7 +46,7 @@ export type ProfissionalMinAggregateOutputType = {
 }
 
 export type ProfissionalMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   nome: string | null
   descricao: string | null
   imagemURL: string | null
@@ -68,13 +66,11 @@ export type ProfissionalCountAggregateOutputType = {
 
 
 export type ProfissionalAvgAggregateInputType = {
-  id?: true
   avaliacao?: true
   quantidadeAvaliacoes?: true
 }
 
 export type ProfissionalSumAggregateInputType = {
-  id?: true
   avaliacao?: true
   quantidadeAvaliacoes?: true
 }
@@ -194,12 +190,12 @@ export type ProfissionalGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 }
 
 export type ProfissionalGroupByOutputType = {
-  id: number
+  id: string
   nome: string
   descricao: string
-  imagemURL: string
-  avaliacao: number
-  quantidadeAvaliacoes: number
+  imagemURL: string | null
+  avaliacao: number | null
+  quantidadeAvaliacoes: number | null
   _count: ProfissionalCountAggregateOutputType | null
   _avg: ProfissionalAvgAggregateOutputType | null
   _sum: ProfissionalSumAggregateOutputType | null
@@ -226,45 +222,48 @@ export type ProfissionalWhereInput = {
   AND?: Prisma.ProfissionalWhereInput | Prisma.ProfissionalWhereInput[]
   OR?: Prisma.ProfissionalWhereInput[]
   NOT?: Prisma.ProfissionalWhereInput | Prisma.ProfissionalWhereInput[]
-  id?: Prisma.IntFilter<"Profissional"> | number
+  id?: Prisma.StringFilter<"Profissional"> | string
   nome?: Prisma.StringFilter<"Profissional"> | string
   descricao?: Prisma.StringFilter<"Profissional"> | string
-  imagemURL?: Prisma.StringFilter<"Profissional"> | string
-  avaliacao?: Prisma.FloatFilter<"Profissional"> | number
-  quantidadeAvaliacoes?: Prisma.IntFilter<"Profissional"> | number
+  imagemURL?: Prisma.StringNullableFilter<"Profissional"> | string | null
+  avaliacao?: Prisma.FloatNullableFilter<"Profissional"> | number | null
+  quantidadeAvaliacoes?: Prisma.IntNullableFilter<"Profissional"> | number | null
   agendamentos?: Prisma.AgendamentoListRelationFilter
+  usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
 }
 
 export type ProfissionalOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
-  imagemURL?: Prisma.SortOrder
-  avaliacao?: Prisma.SortOrder
-  quantidadeAvaliacoes?: Prisma.SortOrder
+  imagemURL?: Prisma.SortOrderInput | Prisma.SortOrder
+  avaliacao?: Prisma.SortOrderInput | Prisma.SortOrder
+  quantidadeAvaliacoes?: Prisma.SortOrderInput | Prisma.SortOrder
   agendamentos?: Prisma.AgendamentoOrderByRelationAggregateInput
+  usuario?: Prisma.UsuarioOrderByWithRelationInput
 }
 
 export type ProfissionalWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   nome?: string
   AND?: Prisma.ProfissionalWhereInput | Prisma.ProfissionalWhereInput[]
   OR?: Prisma.ProfissionalWhereInput[]
   NOT?: Prisma.ProfissionalWhereInput | Prisma.ProfissionalWhereInput[]
   descricao?: Prisma.StringFilter<"Profissional"> | string
-  imagemURL?: Prisma.StringFilter<"Profissional"> | string
-  avaliacao?: Prisma.FloatFilter<"Profissional"> | number
-  quantidadeAvaliacoes?: Prisma.IntFilter<"Profissional"> | number
+  imagemURL?: Prisma.StringNullableFilter<"Profissional"> | string | null
+  avaliacao?: Prisma.FloatNullableFilter<"Profissional"> | number | null
+  quantidadeAvaliacoes?: Prisma.IntNullableFilter<"Profissional"> | number | null
   agendamentos?: Prisma.AgendamentoListRelationFilter
+  usuario?: Prisma.XOR<Prisma.UsuarioNullableScalarRelationFilter, Prisma.UsuarioWhereInput> | null
 }, "id" | "nome">
 
 export type ProfissionalOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   nome?: Prisma.SortOrder
   descricao?: Prisma.SortOrder
-  imagemURL?: Prisma.SortOrder
-  avaliacao?: Prisma.SortOrder
-  quantidadeAvaliacoes?: Prisma.SortOrder
+  imagemURL?: Prisma.SortOrderInput | Prisma.SortOrder
+  avaliacao?: Prisma.SortOrderInput | Prisma.SortOrder
+  quantidadeAvaliacoes?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ProfissionalCountOrderByAggregateInput
   _avg?: Prisma.ProfissionalAvgOrderByAggregateInput
   _max?: Prisma.ProfissionalMaxOrderByAggregateInput
@@ -276,76 +275,88 @@ export type ProfissionalScalarWhereWithAggregatesInput = {
   AND?: Prisma.ProfissionalScalarWhereWithAggregatesInput | Prisma.ProfissionalScalarWhereWithAggregatesInput[]
   OR?: Prisma.ProfissionalScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProfissionalScalarWhereWithAggregatesInput | Prisma.ProfissionalScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Profissional"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Profissional"> | string
   nome?: Prisma.StringWithAggregatesFilter<"Profissional"> | string
   descricao?: Prisma.StringWithAggregatesFilter<"Profissional"> | string
-  imagemURL?: Prisma.StringWithAggregatesFilter<"Profissional"> | string
-  avaliacao?: Prisma.FloatWithAggregatesFilter<"Profissional"> | number
-  quantidadeAvaliacoes?: Prisma.IntWithAggregatesFilter<"Profissional"> | number
+  imagemURL?: Prisma.StringNullableWithAggregatesFilter<"Profissional"> | string | null
+  avaliacao?: Prisma.FloatNullableWithAggregatesFilter<"Profissional"> | number | null
+  quantidadeAvaliacoes?: Prisma.IntNullableWithAggregatesFilter<"Profissional"> | number | null
 }
 
 export type ProfissionalCreateInput = {
+  id?: string
   nome: string
   descricao: string
-  imagemURL: string
-  avaliacao: number
-  quantidadeAvaliacoes: number
+  imagemURL?: string | null
+  avaliacao?: number | null
+  quantidadeAvaliacoes?: number | null
   agendamentos?: Prisma.AgendamentoCreateNestedManyWithoutProfissionalInput
+  usuario?: Prisma.UsuarioCreateNestedOneWithoutProfissionalInput
 }
 
 export type ProfissionalUncheckedCreateInput = {
-  id?: number
+  id?: string
   nome: string
   descricao: string
-  imagemURL: string
-  avaliacao: number
-  quantidadeAvaliacoes: number
+  imagemURL?: string | null
+  avaliacao?: number | null
+  quantidadeAvaliacoes?: number | null
   agendamentos?: Prisma.AgendamentoUncheckedCreateNestedManyWithoutProfissionalInput
+  usuario?: Prisma.UsuarioUncheckedCreateNestedOneWithoutProfissionalInput
 }
 
 export type ProfissionalUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  imagemURL?: Prisma.StringFieldUpdateOperationsInput | string
-  avaliacao?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantidadeAvaliacoes?: Prisma.IntFieldUpdateOperationsInput | number
+  imagemURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avaliacao?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantidadeAvaliacoes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   agendamentos?: Prisma.AgendamentoUpdateManyWithoutProfissionalNestedInput
+  usuario?: Prisma.UsuarioUpdateOneWithoutProfissionalNestedInput
 }
 
 export type ProfissionalUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  imagemURL?: Prisma.StringFieldUpdateOperationsInput | string
-  avaliacao?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantidadeAvaliacoes?: Prisma.IntFieldUpdateOperationsInput | number
+  imagemURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avaliacao?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantidadeAvaliacoes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   agendamentos?: Prisma.AgendamentoUncheckedUpdateManyWithoutProfissionalNestedInput
+  usuario?: Prisma.UsuarioUncheckedUpdateOneWithoutProfissionalNestedInput
 }
 
 export type ProfissionalCreateManyInput = {
-  id?: number
+  id?: string
   nome: string
   descricao: string
-  imagemURL: string
-  avaliacao: number
-  quantidadeAvaliacoes: number
+  imagemURL?: string | null
+  avaliacao?: number | null
+  quantidadeAvaliacoes?: number | null
 }
 
 export type ProfissionalUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  imagemURL?: Prisma.StringFieldUpdateOperationsInput | string
-  avaliacao?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantidadeAvaliacoes?: Prisma.IntFieldUpdateOperationsInput | number
+  imagemURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avaliacao?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantidadeAvaliacoes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type ProfissionalUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  imagemURL?: Prisma.StringFieldUpdateOperationsInput | string
-  avaliacao?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantidadeAvaliacoes?: Prisma.IntFieldUpdateOperationsInput | number
+  imagemURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avaliacao?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantidadeAvaliacoes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type ProfissionalNullableScalarRelationFilter = {
+  is?: Prisma.ProfissionalWhereInput | null
+  isNot?: Prisma.ProfissionalWhereInput | null
 }
 
 export type ProfissionalCountOrderByAggregateInput = {
@@ -358,7 +369,6 @@ export type ProfissionalCountOrderByAggregateInput = {
 }
 
 export type ProfissionalAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   avaliacao?: Prisma.SortOrder
   quantidadeAvaliacoes?: Prisma.SortOrder
 }
@@ -382,7 +392,6 @@ export type ProfissionalMinOrderByAggregateInput = {
 }
 
 export type ProfissionalSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   avaliacao?: Prisma.SortOrder
   quantidadeAvaliacoes?: Prisma.SortOrder
 }
@@ -392,8 +401,32 @@ export type ProfissionalScalarRelationFilter = {
   isNot?: Prisma.ProfissionalWhereInput
 }
 
-export type FloatFieldUpdateOperationsInput = {
-  set?: number
+export type ProfissionalCreateNestedOneWithoutUsuarioInput = {
+  create?: Prisma.XOR<Prisma.ProfissionalCreateWithoutUsuarioInput, Prisma.ProfissionalUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.ProfissionalCreateOrConnectWithoutUsuarioInput
+  connect?: Prisma.ProfissionalWhereUniqueInput
+}
+
+export type ProfissionalUpdateOneWithoutUsuarioNestedInput = {
+  create?: Prisma.XOR<Prisma.ProfissionalCreateWithoutUsuarioInput, Prisma.ProfissionalUncheckedCreateWithoutUsuarioInput>
+  connectOrCreate?: Prisma.ProfissionalCreateOrConnectWithoutUsuarioInput
+  upsert?: Prisma.ProfissionalUpsertWithoutUsuarioInput
+  disconnect?: Prisma.ProfissionalWhereInput | boolean
+  delete?: Prisma.ProfissionalWhereInput | boolean
+  connect?: Prisma.ProfissionalWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProfissionalUpdateToOneWithWhereWithoutUsuarioInput, Prisma.ProfissionalUpdateWithoutUsuarioInput>, Prisma.ProfissionalUncheckedUpdateWithoutUsuarioInput>
+}
+
+export type NullableFloatFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
   increment?: number
   decrement?: number
   multiply?: number
@@ -414,21 +447,80 @@ export type ProfissionalUpdateOneRequiredWithoutAgendamentosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProfissionalUpdateToOneWithWhereWithoutAgendamentosInput, Prisma.ProfissionalUpdateWithoutAgendamentosInput>, Prisma.ProfissionalUncheckedUpdateWithoutAgendamentosInput>
 }
 
-export type ProfissionalCreateWithoutAgendamentosInput = {
+export type ProfissionalCreateWithoutUsuarioInput = {
+  id?: string
   nome: string
   descricao: string
-  imagemURL: string
-  avaliacao: number
-  quantidadeAvaliacoes: number
+  imagemURL?: string | null
+  avaliacao?: number | null
+  quantidadeAvaliacoes?: number | null
+  agendamentos?: Prisma.AgendamentoCreateNestedManyWithoutProfissionalInput
+}
+
+export type ProfissionalUncheckedCreateWithoutUsuarioInput = {
+  id?: string
+  nome: string
+  descricao: string
+  imagemURL?: string | null
+  avaliacao?: number | null
+  quantidadeAvaliacoes?: number | null
+  agendamentos?: Prisma.AgendamentoUncheckedCreateNestedManyWithoutProfissionalInput
+}
+
+export type ProfissionalCreateOrConnectWithoutUsuarioInput = {
+  where: Prisma.ProfissionalWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProfissionalCreateWithoutUsuarioInput, Prisma.ProfissionalUncheckedCreateWithoutUsuarioInput>
+}
+
+export type ProfissionalUpsertWithoutUsuarioInput = {
+  update: Prisma.XOR<Prisma.ProfissionalUpdateWithoutUsuarioInput, Prisma.ProfissionalUncheckedUpdateWithoutUsuarioInput>
+  create: Prisma.XOR<Prisma.ProfissionalCreateWithoutUsuarioInput, Prisma.ProfissionalUncheckedCreateWithoutUsuarioInput>
+  where?: Prisma.ProfissionalWhereInput
+}
+
+export type ProfissionalUpdateToOneWithWhereWithoutUsuarioInput = {
+  where?: Prisma.ProfissionalWhereInput
+  data: Prisma.XOR<Prisma.ProfissionalUpdateWithoutUsuarioInput, Prisma.ProfissionalUncheckedUpdateWithoutUsuarioInput>
+}
+
+export type ProfissionalUpdateWithoutUsuarioInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  imagemURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avaliacao?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantidadeAvaliacoes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  agendamentos?: Prisma.AgendamentoUpdateManyWithoutProfissionalNestedInput
+}
+
+export type ProfissionalUncheckedUpdateWithoutUsuarioInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  descricao?: Prisma.StringFieldUpdateOperationsInput | string
+  imagemURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avaliacao?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantidadeAvaliacoes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  agendamentos?: Prisma.AgendamentoUncheckedUpdateManyWithoutProfissionalNestedInput
+}
+
+export type ProfissionalCreateWithoutAgendamentosInput = {
+  id?: string
+  nome: string
+  descricao: string
+  imagemURL?: string | null
+  avaliacao?: number | null
+  quantidadeAvaliacoes?: number | null
+  usuario?: Prisma.UsuarioCreateNestedOneWithoutProfissionalInput
 }
 
 export type ProfissionalUncheckedCreateWithoutAgendamentosInput = {
-  id?: number
+  id?: string
   nome: string
   descricao: string
-  imagemURL: string
-  avaliacao: number
-  quantidadeAvaliacoes: number
+  imagemURL?: string | null
+  avaliacao?: number | null
+  quantidadeAvaliacoes?: number | null
+  usuario?: Prisma.UsuarioUncheckedCreateNestedOneWithoutProfissionalInput
 }
 
 export type ProfissionalCreateOrConnectWithoutAgendamentosInput = {
@@ -448,20 +540,23 @@ export type ProfissionalUpdateToOneWithWhereWithoutAgendamentosInput = {
 }
 
 export type ProfissionalUpdateWithoutAgendamentosInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  imagemURL?: Prisma.StringFieldUpdateOperationsInput | string
-  avaliacao?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantidadeAvaliacoes?: Prisma.IntFieldUpdateOperationsInput | number
+  imagemURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avaliacao?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantidadeAvaliacoes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuario?: Prisma.UsuarioUpdateOneWithoutProfissionalNestedInput
 }
 
 export type ProfissionalUncheckedUpdateWithoutAgendamentosInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   nome?: Prisma.StringFieldUpdateOperationsInput | string
   descricao?: Prisma.StringFieldUpdateOperationsInput | string
-  imagemURL?: Prisma.StringFieldUpdateOperationsInput | string
-  avaliacao?: Prisma.FloatFieldUpdateOperationsInput | number
-  quantidadeAvaliacoes?: Prisma.IntFieldUpdateOperationsInput | number
+  imagemURL?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  avaliacao?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  quantidadeAvaliacoes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  usuario?: Prisma.UsuarioUncheckedUpdateOneWithoutProfissionalNestedInput
 }
 
 
@@ -503,6 +598,7 @@ export type ProfissionalSelect<ExtArgs extends runtime.Types.Extensions.Internal
   avaliacao?: boolean
   quantidadeAvaliacoes?: boolean
   agendamentos?: boolean | Prisma.Profissional$agendamentosArgs<ExtArgs>
+  usuario?: boolean | Prisma.Profissional$usuarioArgs<ExtArgs>
   _count?: boolean | Prisma.ProfissionalCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["profissional"]>
 
@@ -536,6 +632,7 @@ export type ProfissionalSelectScalar = {
 export type ProfissionalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "descricao" | "imagemURL" | "avaliacao" | "quantidadeAvaliacoes", ExtArgs["result"]["profissional"]>
 export type ProfissionalInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   agendamentos?: boolean | Prisma.Profissional$agendamentosArgs<ExtArgs>
+  usuario?: boolean | Prisma.Profissional$usuarioArgs<ExtArgs>
   _count?: boolean | Prisma.ProfissionalCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProfissionalIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -545,14 +642,15 @@ export type $ProfissionalPayload<ExtArgs extends runtime.Types.Extensions.Intern
   name: "Profissional"
   objects: {
     agendamentos: Prisma.$AgendamentoPayload<ExtArgs>[]
+    usuario: Prisma.$UsuarioPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     nome: string
     descricao: string
-    imagemURL: string
-    avaliacao: number
-    quantidadeAvaliacoes: number
+    imagemURL: string | null
+    avaliacao: number | null
+    quantidadeAvaliacoes: number | null
   }, ExtArgs["result"]["profissional"]>
   composites: {}
 }
@@ -948,6 +1046,7 @@ readonly fields: ProfissionalFieldRefs;
 export interface Prisma__ProfissionalClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   agendamentos<T extends Prisma.Profissional$agendamentosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profissional$agendamentosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AgendamentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  usuario<T extends Prisma.Profissional$usuarioArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Profissional$usuarioArgs<ExtArgs>>): Prisma.Prisma__UsuarioClient<runtime.Types.Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -977,7 +1076,7 @@ export interface Prisma__ProfissionalClient<T, Null = never, ExtArgs extends run
  * Fields of the Profissional model
  */
 export interface ProfissionalFieldRefs {
-  readonly id: Prisma.FieldRef<"Profissional", 'Int'>
+  readonly id: Prisma.FieldRef<"Profissional", 'String'>
   readonly nome: Prisma.FieldRef<"Profissional", 'String'>
   readonly descricao: Prisma.FieldRef<"Profissional", 'String'>
   readonly imagemURL: Prisma.FieldRef<"Profissional", 'String'>
@@ -1397,6 +1496,25 @@ export type Profissional$agendamentosArgs<ExtArgs extends runtime.Types.Extensio
   take?: number
   skip?: number
   distinct?: Prisma.AgendamentoScalarFieldEnum | Prisma.AgendamentoScalarFieldEnum[]
+}
+
+/**
+ * Profissional.usuario
+ */
+export type Profissional$usuarioArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Usuario
+   */
+  select?: Prisma.UsuarioSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Usuario
+   */
+  omit?: Prisma.UsuarioOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UsuarioInclude<ExtArgs> | null
+  where?: Prisma.UsuarioWhereInput
 }
 
 /**

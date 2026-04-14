@@ -1,8 +1,8 @@
 export default interface Profissional {
-    id: number
+    id: string
     nome: string
     descricao: string
-    imagemURL: string
-    avaliacao: number
-    quantidadeAvaliacoes: number
+    imagemURL?: string
+    avaliacao?: number
+    quantidadeAvaliacoes?: number
 }

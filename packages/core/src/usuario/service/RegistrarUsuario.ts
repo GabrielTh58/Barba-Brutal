@@ -1,9 +1,9 @@
 import CasoDeUso from '../../shared/CasoDeUso'
+import { Id } from '../../utils/Id'
 import Usuario from '../model/Usuario'
 import ProvedorCriptografia from '../provider/ProvedorCriptografia'
 import RepositorioUsuario from '../provider/RepositorioUsuario'
 
-// DDD: Application Service = Caso de Uso = Fluxo da Aplicação
 export default class RegistrarUsuario implements CasoDeUso<Usuario, void> {
     constructor(
         private readonly repo: RepositorioUsuario,
@@ -20,6 +20,7 @@ export default class RegistrarUsuario implements CasoDeUso<Usuario, void> {
         const senhaCriptografada = await this.cripto.criptografar(usuario.senha)
         const novoUsuario = {
             ...usuario,
+            id: Id.gerar(),
             senha: senhaCriptografada,
             barbeiro: false,
         }

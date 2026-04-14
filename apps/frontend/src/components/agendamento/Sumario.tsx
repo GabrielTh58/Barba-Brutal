@@ -3,7 +3,7 @@ import { MoedaUtils, Profissional, Servico } from '@barbabrutal/core'
 import { IconCalendar } from '@tabler/icons-react'
 
 export default function Sumario() {
-    const { profissional, servicos, dataValida, precoTotal, duracaoTotal, podeAgendar, agendar } =
+    const { profissional, servicosSelecionados, dataValida, precoTotal, duracaoTotal, podeAgendar, agendar } =
         useAgendamento()
 
     return (
@@ -11,7 +11,7 @@ export default function Sumario() {
             <SumarioTitulo />
             <div className="flex flex-col p-5 gap-6">
                 <SumarioProfissional profissional={profissional} />
-                <SumarioServicos servicos={servicos} />
+                <SumarioServicos servicos={servicosSelecionados} />
                 <DuracaoTotal duracao={duracaoTotal()} />
                 <SumarioData data={dataValida} />
             </div>

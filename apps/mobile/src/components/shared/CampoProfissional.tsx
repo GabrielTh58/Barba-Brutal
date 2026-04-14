@@ -25,7 +25,7 @@ export default function CampoProfissional(props: CampoProfissionalProps) {
                     <View style={{ alignItems: 'center' }}>
                         <Image
                             style={{ width: 100, height: 100, borderRadius: 6 }}
-                            source={imagens.profissionais.find((pr) => pr.id === p.id)?.imagem}
+                            src={imagens.profissionais.find((pr) => pr.id === p.id)?.imagem}
                         />
                         <Text style={{ color: 'white', paddingVertical: 5 }}>
                             {p.nome.split(' ')[0]}

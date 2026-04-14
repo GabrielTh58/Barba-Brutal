@@ -3,7 +3,7 @@ import CasoDeUso from '../../shared/CasoDeUso'
 import RepositorioAgendamento from '../provider/RepositorioAgendamento'
 
 type Entrada = {
-    profissionalId: number
+    profissionalId: string
     data: Date
 }
 

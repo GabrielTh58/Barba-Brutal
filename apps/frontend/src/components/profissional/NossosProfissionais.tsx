@@ -1,9 +1,11 @@
 import ItemProfissional from './ItemProfissional'
 import TituloSecao from '../shared/TituloSecao'
-import useProfissionais from '../../data/hooks/useProfissionais'
+import Carregando from '../shared/Carregando'
+import { buscarProfissionaisCache } from '@/data/api/profissionais.api'
 
-export default function NossosProfissionais() {
-    const { profissionais } = useProfissionais()
+export default async function NossosProfissionais() {
+    const profissionais = await buscarProfissionaisCache()
+    
     return (
         <div className="flex flex-col gap-y-16 py-12">
             <TituloSecao

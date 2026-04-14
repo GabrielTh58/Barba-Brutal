@@ -18,10 +18,10 @@ export default class LoginUsuario implements CasoDeUso<Entrada, Usuario> {
         const { email, senha } = entrada
 
         const usuario = await this.repo.buscarPorEmail(email)
-        if (!usuario) throw new Error('Usuário não encontrado')
+        if (!usuario) throw new Error('Credenciais inválidas')
 
         const mesmaSenha = await this.cripto.comparar(senha, usuario.senha)
-        if (!mesmaSenha) throw new Error('Senha incorreta')
+        if (!mesmaSenha) throw new Error('Credenciais inválidas')
 
         delete usuario.senha
         return usuario
